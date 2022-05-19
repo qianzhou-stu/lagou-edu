@@ -1,0 +1,23 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: edu-config-boot
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/zhou-andreas/lagou-edu-repo.git
+          username: 18870325354
+          password: 1!andreaszhou
+          default-label: master
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${spring.application.name}:${server.port}:@project.version@
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/

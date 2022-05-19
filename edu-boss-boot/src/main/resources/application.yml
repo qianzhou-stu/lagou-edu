@@ -1,0 +1,14 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: edu-boss-boot
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-Zone: http://127.0.0.1/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${spring.application.name}:${server.port}:@project.version@

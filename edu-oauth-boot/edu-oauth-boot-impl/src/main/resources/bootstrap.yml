@@ -1,0 +1,34 @@
+server:
+  port: 8890
+spring:
+  application:
+    name: edu-oauth-boot
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: edu-config-boot
+      # uri: http://127.0.0.1:8090
+      label: master
+      profile: '@profile@'
+      name: ${spring.application.name}
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  # 当spring mvc 找不到对应的controller来处理请求时，就不会使用默认的方式处理了，直接抛出异常，
+  # 就会被ExceptionAdviceHandler捕获到，到这里自定义异常处理结束
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+# 注册到Eureka服务中心
+eureka:
+  client:
+    service-url:
+      defaultZone: '@eureka.host@'
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${spring.application.name}:${server.port}:@project.version@
+    lease-expiration-duration-in-seconds: 20
+    lease-renewal-interval-in-seconds: 3
+

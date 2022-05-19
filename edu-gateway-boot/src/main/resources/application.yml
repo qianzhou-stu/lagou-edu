@@ -1,0 +1,29 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: edu-gateway-boot
+  cloud:
+    gateway:
+      routes:
+        - id: lagou-edu-front
+          uri: lb://edu-front-boot
+          predicates:
+            - Path=/front/**
+          filters:
+            - StripPrefix=1
+        - id: lagou-edu-boss
+          uri: lb://edu-boss-boot
+          predicates:
+            - Path=/boss/**
+          filters:
+            - StripPrefix=1
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${spring.application.name}:${server.port}:@project.version@
