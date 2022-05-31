@@ -19,7 +19,7 @@
         <module>edu-comment-boot</module>
         <module>edu-authority-boot</module>
         <module>edu-oauth-boot</module>
-        <module>edu-oauth-boot</module>
+       <!-- <module>edu-oauth-boot</module>-->
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
