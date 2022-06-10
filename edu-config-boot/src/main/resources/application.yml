@@ -8,10 +8,20 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/zhou-andreas/lagou-edu-repo.git
-          username: 18870325354
-          password: 1!andreaszhou
-          default-label: master
+          uri: https://github.com/AndreasZhou/lagou-edu-repo.git
+          username: '1292184670@qq.com'
+          password: '!andreaszhou'
+          default-label: main
+          # uri: https://gitee.com/zhou-andreas/lagou-edu-repo.git
+          # username: 18870325354
+          # password: 1!andreaszhou
+          # default-label: master
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    username: guest
+#    password: guest
+
 eureka:
   instance:
     prefer-ip-address: true
@@ -21,3 +31,11 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

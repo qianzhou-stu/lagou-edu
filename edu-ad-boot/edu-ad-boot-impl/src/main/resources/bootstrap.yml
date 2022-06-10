@@ -1,15 +1,37 @@
+server:
+  port: 8096
 spring:
   application:
     name: edu-ad-boot
-  cloud:
-    config:
-      discovery:
-        enabled: true
-        service-id: edu-config-boot
-      # uri: http://127.0.0.1:8090
-      # label: master
-      profile: '@profile@'
-      name: ${spring.application.name}
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///edu_ad?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: "!andreaszhou"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    #启用shutdown端点，以便支持优雅停机
+    shutdown:
+      enabled: true
+#分布式链路追踪--调整SpringBoot日志输出级别
+logging:
+  config: classpath:logback.xml
+#spring:
+#  application:
+#    name: edu-ad-boot
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true
+#        service-id: edu-config-boot
+#      # uri: http://127.0.0.1:8090
+#      # label: master
+#      profile: '@profile@'
+#      name: ${spring.application.name}
 eureka:
   client:
     fetch-registry: true

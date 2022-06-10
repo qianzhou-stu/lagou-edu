@@ -25,6 +25,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.lagou</groupId>
+            <artifactId>edu-common-boot</artifactId>
+            <version>v1.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 </project>

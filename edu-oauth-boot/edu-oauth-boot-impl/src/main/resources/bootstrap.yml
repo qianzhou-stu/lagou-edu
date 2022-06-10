@@ -1,25 +1,60 @@
 server:
-  port: 8890
+  port: 8094
 spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///edu_oauth?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: "!andreaszhou"
+  security:
+    oauth2:
+      jwt:
+        signingKey: 123456
   application:
     name: edu-oauth-boot
-  cloud:
-    config:
-      discovery:
-        enabled: true
-        service-id: edu-config-boot
-      # uri: http://127.0.0.1:8090
-      label: master
-      profile: '@profile@'
-      name: ${spring.application.name}
   main:
     allow-bean-definition-overriding: true
     allow-circular-references: true
-  # 当spring mvc 找不到对应的controller来处理请求时，就不会使用默认的方式处理了，直接抛出异常，
-  # 就会被ExceptionAdviceHandler捕获到，到这里自定义异常处理结束
+    # 当spring mvc 找不到对应的controller来处理请求时，就不会使用默认的方式处理了，直接抛出异常，
+    # 就会被ExceptionAdviceHandler捕获到，到这里自定义异常处理结束
   mvc:
     throw-exception-if-no-handler-found: true
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    #启用shutdown端点，以便支持优雅停机
+    shutdown:
+      enabled: true
+# 分布式链路追踪--调整SpringBoot日志输出级别
+# logging:
+#   config: classpath:logback.xml
+#spring:
+#  application:
+#    name: edu-oauth-boot
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql:///edu_order?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: "!andreaszhou"
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true
+#        service-id: edu-config-boot
+#      # uri: http://127.0.0.1:8090
+#      label: master
+#      profile: '@profile@'
+#      name: ${spring.application.name}
+#  main:
+#    allow-bean-definition-overriding: true
+#    allow-circular-references: true
+#  # 当spring mvc 找不到对应的controller来处理请求时，就不会使用默认的方式处理了，直接抛出异常，
+#  # 就会被ExceptionAdviceHandler捕获到，到这里自定义异常处理结束
+#  mvc:
+#    throw-exception-if-no-handler-found: true
 # 注册到Eureka服务中心
 eureka:
   client:

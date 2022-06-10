@@ -18,6 +18,13 @@ spring:
             - Path=/boss/**
           filters:
             - StripPrefix=1
+#    config:
+#      discovery:
+#        service-id: edu-config-boot
+#        enabled: true
+#      label: main
+#      profile: dev
+#      name: ${spring.application.name}
 eureka:
   client:
     register-with-eureka: true
