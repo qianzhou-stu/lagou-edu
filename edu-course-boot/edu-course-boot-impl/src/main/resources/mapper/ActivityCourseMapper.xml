@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lagou.course.mapper.ActivityCourseMapper">
+  <resultMap id="BaseResultMap" type="com.lagou.course.entity.ActivityCourse">
+    <!--@mbg.generated -->
+    <!--@Table activity_course -->
+    <!-- generated on Tue Jun 07 18:00:12 CST 2022 -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_del" jdbcType="BOOLEAN" property="isDel" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated -->
+    id, course_id, begin_time, end_time, amount, stock, `status`, is_del, remark, create_time, 
+    create_user, update_time, update_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated -->
+    select 
+    <include refid="Base_Column_List" />
+    from activity_course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated -->
+    delete from activity_course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lagou.course.entity.ActivityCourse" useGeneratedKeys="true">
+    <!--@mbg.generated -->
+    insert into activity_course (course_id, begin_time, end_time, 
+      amount, stock, `status`, 
+      is_del, remark, create_time, 
+      create_user, update_time, update_user
+      )
+    values (#{courseId,jdbcType=INTEGER}, #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{amount,jdbcType=DOUBLE}, #{stock,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{isDel,jdbcType=BOOLEAN}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lagou.course.entity.ActivityCourse" useGeneratedKeys="true">
+    <!--@mbg.generated -->
+    insert into activity_course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=BOOLEAN},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lagou.course.entity.ActivityCourse">
+    <!--@mbg.generated -->
+    update activity_course
+    <set>
+      <if test="courseId != null">
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=BOOLEAN},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lagou.course.entity.ActivityCourse">
+    <!--@mbg.generated -->
+    update activity_course
+    set course_id = #{courseId,jdbcType=INTEGER},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      amount = #{amount,jdbcType=DOUBLE},
+      stock = #{stock,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=TINYINT},
+      is_del = #{isDel,jdbcType=BOOLEAN},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

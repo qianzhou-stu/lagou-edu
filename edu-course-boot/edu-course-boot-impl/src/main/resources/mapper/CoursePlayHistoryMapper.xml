@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lagou.course.mapper.CoursePlayHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.lagou.course.entity.CoursePlayHistory">
+    <!--@mbg.generated -->
+    <!--@Table course_play_history -->
+    <!-- generated on Tue Jun 07 19:40:11 CST 2022 -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="section_id" jdbcType="INTEGER" property="sectionId" />
+    <result column="lesson_id" jdbcType="INTEGER" property="lessonId" />
+    <result column="history_node" jdbcType="INTEGER" property="historyNode" />
+    <result column="history_highest_node" jdbcType="INTEGER" property="historyHighestNode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_del" jdbcType="BOOLEAN" property="isDel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated -->
+    id, user_id, course_id, section_id, lesson_id, history_node, history_highest_node, 
+    create_time, update_time, is_del
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated -->
+    select 
+    <include refid="Base_Column_List" />
+    from course_play_history
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated -->
+    delete from course_play_history
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.lagou.course.entity.CoursePlayHistory" useGeneratedKeys="true">
+    <!--@mbg.generated -->
+    insert into course_play_history (user_id, course_id, section_id, 
+      lesson_id, history_node, history_highest_node, 
+      create_time, update_time, is_del
+      )
+    values (#{userId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{sectionId,jdbcType=INTEGER}, 
+      #{lessonId,jdbcType=INTEGER}, #{historyNode,jdbcType=INTEGER}, #{historyHighestNode,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=BOOLEAN}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.lagou.course.entity.CoursePlayHistory" useGeneratedKeys="true">
+    <!--@mbg.generated -->
+    insert into course_play_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="sectionId != null">
+        section_id,
+      </if>
+      <if test="lessonId != null">
+        lesson_id,
+      </if>
+      <if test="historyNode != null">
+        history_node,
+      </if>
+      <if test="historyHighestNode != null">
+        history_highest_node,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="sectionId != null">
+        #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="historyNode != null">
+        #{historyNode,jdbcType=INTEGER},
+      </if>
+      <if test="historyHighestNode != null">
+        #{historyHighestNode,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lagou.course.entity.CoursePlayHistory">
+    <!--@mbg.generated -->
+    update course_play_history
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="sectionId != null">
+        section_id = #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="lessonId != null">
+        lesson_id = #{lessonId,jdbcType=INTEGER},
+      </if>
+      <if test="historyNode != null">
+        history_node = #{historyNode,jdbcType=INTEGER},
+      </if>
+      <if test="historyHighestNode != null">
+        history_highest_node = #{historyHighestNode,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lagou.course.entity.CoursePlayHistory">
+    <!--@mbg.generated -->
+    update course_play_history
+    set user_id = #{userId,jdbcType=INTEGER},
+      course_id = #{courseId,jdbcType=INTEGER},
+      section_id = #{sectionId,jdbcType=INTEGER},
+      lesson_id = #{lessonId,jdbcType=INTEGER},
+      history_node = #{historyNode,jdbcType=INTEGER},
+      history_highest_node = #{historyHighestNode,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=BOOLEAN}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
