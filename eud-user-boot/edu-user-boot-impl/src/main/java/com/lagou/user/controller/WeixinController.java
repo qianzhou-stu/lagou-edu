@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author zhouqian
  * @since 2022-04-05
  */
-@RestController
-@RequestMapping("/user/weixin")
+/*@RestController
+@RequestMapping("/user/weixin")*/
 public class WeixinController {
 
 }

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author zhouqian
  * @since 2022-04-05
  */
-@RestController
-@RequestMapping("/user/phone-verification-code")
+/*@RestController
+@RequestMapping("/user/phone-verification-code")*/
 public class PhoneVerificationCodeController {
 
 }
