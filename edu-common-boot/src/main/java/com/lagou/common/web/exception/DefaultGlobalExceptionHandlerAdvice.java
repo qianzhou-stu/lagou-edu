@@ -2,6 +2,7 @@ package com.lagou.common.web.exception;
 
 import com.lagou.common.entity.vo.Result;
 import com.lagou.common.exception.BaseException;
+import com.lagou.common.exception.ServiceException;
 import com.lagou.common.exception.SystemErrorType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
@@ -42,6 +43,12 @@ public class DefaultGlobalExceptionHandlerAdvice {
     @ExceptionHandler(value = {BaseException.class})
     public Result baseException(BaseException ex) {
         log.info("base exception:{}", ex.getMessage());
+        return Result.fail(ex.getErrorType());
+    }
+
+    @ExceptionHandler(value = {ServiceException.class})
+    public Result serviceException(ServiceException ex){
+        log.info("service exception:{}", ex.getMessage());
         return Result.fail(ex.getErrorType());
     }
 
