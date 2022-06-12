@@ -1,17 +1,14 @@
 server:
-  port: 8091
-spring:
-  application:
-    name: edu-boss-boot
+  port: 8092
 eureka:
   client:
-    register-with-eureka: true
+    registry-fetch-interval-seconds: 5
     fetch-registry: true
+    register-with-eureka: true
     service-url:
       default-Zone: http://127.0.0.1/eureka
-    registry-fetch-interval-seconds: 5
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipaddress}:${spring.application.name}:${server.port}:@project.version@
-    lease-renewal-interval-in-seconds: 3
     lease-expiration-duration-in-seconds: 9
+    lease-renewal-interval-in-seconds: 3

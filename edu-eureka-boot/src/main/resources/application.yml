@@ -6,6 +6,9 @@ spring:
     name: edu-eureka-boot
 
 eureka:
+  server:
+    eviction-interval-timer-in-ms: 2
+    enable-self-preservation: true
   instance:
     hostname: eurekaserver
   client:
