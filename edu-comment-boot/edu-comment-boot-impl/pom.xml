@@ -18,7 +18,7 @@
     <dependencies>
         <dependency>
             <groupId>com.lagou</groupId>
-            <artifactId>edu-commont-boot-api</artifactId>
+            <artifactId>edu-comment-boot-api</artifactId>
             <version>v1.0</version>
         </dependency>
         <dependency>
@@ -28,6 +28,21 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.75</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lagou</groupId>
+            <artifactId>edu-user-boot-api</artifactId>
+            <version>v1.0</version>
         </dependency>
     </dependencies>
 

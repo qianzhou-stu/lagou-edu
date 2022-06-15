@@ -12,7 +12,7 @@
     <artifactId>edu-comment-boot</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>edu-commont-boot-api</module>
+        <module>edu-comment-boot-api</module>
         <module>edu-comment-boot-impl</module>
     </modules>
 
