@@ -1,6 +1,8 @@
 package com.lagou.order.entity;
 
 import java.util.Date;
+
+import io.swagger.models.auth.In;
 import lombok.Data;
 
 /**
@@ -36,12 +38,12 @@ public class UserCourseOrder {
     /**
     * 订单来源类型: 1 用户下单购买 2 后台添加专栏
     */
-    private Byte sourceType;
+    private Integer sourceType;
 
     /**
     * 当前状态: 0已创建 10已支付 20已完成 30已取消 40已过期 
     */
-    private Byte status;
+    private Integer status;
 
     /**
     * 创建时间

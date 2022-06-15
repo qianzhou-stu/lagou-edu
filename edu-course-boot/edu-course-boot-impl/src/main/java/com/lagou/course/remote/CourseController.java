@@ -7,8 +7,10 @@ import com.lagou.course.api.param.CourseQueryParam;
 import com.lagou.course.service.ICourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -27,30 +29,61 @@ public class  CourseController implements CourseRemoteService {
     @Autowired
     private ICourseService courseService;
 
+
+    /**
+     * 查询选课信息
+     * @param userId
+     * @return List<CourseDTO>
+     */
     @Override
     @GetMapping("/getAllCourses")
     public List<CourseDTO> getAllCourses(@RequestParam(required = false,name = "userId") Integer userId) {
         return courseService.getAllCourses(userId);
     }
 
+    /**
+     * 根据用户id查询购买课程
+     * @param userId
+     * @return List<CourseDTO>
+     */
     @Override
     @GetMapping("/getPurchasedCourse")
     public List<CourseDTO> getPurchasedCourse(@RequestParam("userId") Integer userId) {
         return courseService.getPurchasedCourse(userId);
     }
 
+    /**
+     * 根据用户id和课程id查询课信息
+     * @param courseId
+     * @param userId
+     * @return CourseDTO
+     */
     @Override
+    @GetMapping("/getCourseById")
     public CourseDTO getCourseById(Integer courseId, Integer userId) {
-        return null;
+        // 根据用户id和课程id获取对应的课程信息
+        return courseService.getCourseById(courseId, userId);
     }
 
+    /**
+     * 保存课程信息
+     * @param courseDTO
+     * @return boolean
+     */
     @Override
+    @GetMapping("/saveOrUpdateCourse")
     public boolean saveOrUpdateCourse(CourseDTO courseDTO) {
-        return false;
+        return courseService.saveOrUpdateCourse(courseDTO);
     }
 
+    /**
+     * 根据查询条件分页查询课程信息
+     * @param courseQueryParam
+     * @return
+     */
     @Override
+    @GetMapping("/getQueryCourses")
     public PageResultDTO<CourseDTO> getQueryCourses(CourseQueryParam courseQueryParam) {
-        return null;
+        return courseService.getQueryCourses(courseQueryParam);
     }
 }

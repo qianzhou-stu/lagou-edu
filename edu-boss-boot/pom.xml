@@ -25,16 +25,22 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-
+        <!--引入ad依赖-->
         <dependency>
             <groupId>com.lagou</groupId>
             <artifactId>edu-ad-boot-api</artifactId>
             <version>v1.0</version>
         </dependency>
-
+        <!--引入common依赖-->
         <dependency>
             <groupId>com.lagou</groupId>
             <artifactId>edu-common-boot</artifactId>
+            <version>v1.0</version>
+        </dependency>
+        <!--引入course调用接口依赖-->
+        <dependency>
+            <groupId>com.lagou</groupId>
+            <artifactId>edu-course-boot-api</artifactId>
             <version>v1.0</version>
         </dependency>
     </dependencies>

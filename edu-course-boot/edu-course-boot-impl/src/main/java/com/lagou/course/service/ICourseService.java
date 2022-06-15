@@ -3,6 +3,7 @@ package com.lagou.course.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lagou.course.api.dto.CourseDTO;
 import com.lagou.course.api.dto.PageResultDTO;
+import com.lagou.course.api.dto.SectionDTO;
 import com.lagou.course.api.param.CourseQueryParam;
 import com.lagou.course.entity.Course;
 
@@ -12,21 +13,21 @@ public interface ICourseService extends IService<Course> {
     /**
      * 获取选课列表
      * @param userId
-     * @return
+     * @return List<CourseDTO>
      */
     List<CourseDTO> getAllCourses(Integer userId);
 
     /**
      * 获取已购课程信息
      * @param userId
-     * @return
+     * @return List<CourseDTO>
      */
     List<CourseDTO> getPurchasedCourse(Integer userId);
 
     /**
      * 获取课程详情
      * @param courseId
-     * @return
+     * @return CourseDTO
      */
     CourseDTO getCourseById(Integer courseId, Integer userId);
 
@@ -34,14 +35,14 @@ public interface ICourseService extends IService<Course> {
     /**
      * 更新课程
      * @param courseDTO
-     * @return
+     * @return boolean
      */
     boolean saveOrUpdateCourse(CourseDTO courseDTO);
 
     /**
      * 根据条件查询课程信息
      * @param courseQueryParam
-     * @return
+     * @return PageResultDTO<CourseDTO>
      */
     PageResultDTO<CourseDTO> getQueryCourses(CourseQueryParam courseQueryParam);
 }

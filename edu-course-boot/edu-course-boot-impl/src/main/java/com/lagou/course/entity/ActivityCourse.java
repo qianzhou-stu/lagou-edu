@@ -41,7 +41,7 @@ public class ActivityCourse {
     /**
     * 状态 0未上架 10已上架
     */
-    private Byte status;
+    private Integer status;
 
     /**
     * 逻辑删除 0未删除 1删除

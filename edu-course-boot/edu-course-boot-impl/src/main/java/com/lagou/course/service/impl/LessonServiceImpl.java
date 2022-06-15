@@ -13,11 +13,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.w3c.dom.ls.LSInput;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -83,7 +81,7 @@ public class LessonServiceImpl extends ServiceImpl<CourseLessonMapper, CourseLes
     }
 
     @Override
-    public List<CourseLesson> getBySectionId(Integer sectionId) {
+    public List<LessonDTO> getBySectionId(Integer sectionId) {
         QueryWrapper<CourseLesson> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("section_id", sectionId);
         queryWrapper.eq("is_del", Boolean.FALSE);
@@ -92,6 +90,12 @@ public class LessonServiceImpl extends ServiceImpl<CourseLessonMapper, CourseLes
         if (CollectionUtils.isEmpty(courseLessons)){
             return Collections.emptyList();
         }
-        return courseLessons;
+        List<LessonDTO> lessonDTOS = new ArrayList<>();
+        for (CourseLesson courseLesson : courseLessons) {
+            LessonDTO lessonDTO = new LessonDTO();
+            BeanUtils.copyProperties(courseLesson, lessonDTO);
+            lessonDTOS.add(lessonDTO);
+        }
+        return lessonDTOS;
     }
 }

@@ -43,7 +43,7 @@ import java.util.stream.Collectors;
 
 /**
  * @ClassName CourseServiceImpl
- * @Description TODO
+ * @Description CourseServiceImpl实现类
  * @Author zhouqian
  * @Date 2022/6/7 21:00
  * @Version 1.0
@@ -452,4 +452,6 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         }
         return null;
     }
+
+
 }

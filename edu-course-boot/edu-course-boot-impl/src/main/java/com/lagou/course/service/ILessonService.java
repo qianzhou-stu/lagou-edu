@@ -18,5 +18,5 @@ public interface ILessonService extends IService<CourseLesson> {
 
     public Integer getReleaseCourse(Integer courseId);
 
-    public List<CourseLesson> getBySectionId(Integer sectionId);
+    public List<LessonDTO> getBySectionId(Integer sectionId);
 }

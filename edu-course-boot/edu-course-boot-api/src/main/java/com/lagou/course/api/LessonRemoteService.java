@@ -47,4 +47,15 @@ public interface LessonRemoteService {
      */
     @GetMapping(value = "/getByIds")
     Map<Integer, String> getByIds(@RequestParam("lessonIds") List<Integer> lessonIds);
+
+    /**
+     * 得到发布课程
+     * @param courseId
+     * @return Integer
+     */
+    @GetMapping("/getReleaseCourse")
+    Integer getReleaseCourse(Integer courseId);
+
+    @GetMapping("/getBySectionId")
+    public List<LessonDTO> getBySectionId(Integer sectionId);
 }

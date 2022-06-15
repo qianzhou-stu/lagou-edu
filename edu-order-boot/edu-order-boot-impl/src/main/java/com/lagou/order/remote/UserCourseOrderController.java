@@ -6,6 +6,8 @@ import com.lagou.order.api.dto.CreateShopGoodsOrderReqDTO;
 import com.lagou.order.api.dto.UserCourseOrderDTO;
 import com.lagou.order.api.dto.UserCourseOrderResDTO;
 import com.lagou.order.service.UserCourseOrderService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,25 +31,29 @@ public class UserCourseOrderController implements UserCourseOrderRemoteService {
     @Override
     @PostMapping("/saveOrder")
     public ResponseDTO<UserCourseOrderResDTO> saveOrder(@RequestBody CreateShopGoodsOrderReqDTO reqDTO) {
-        return null;
+        UserCourseOrderResDTO userCourseOrderResDTO = userCourseOrderService.saveOrder(reqDTO);
+        return ResponseDTO.success(userCourseOrderResDTO);
     }
 
     @Override
     @GetMapping("/getCourseOrderByOrderNo")
     public ResponseDTO<UserCourseOrderDTO> getCourseOrderByOrderNo(@RequestParam("orderNo") String orderNo) {
-        return null;
+        UserCourseOrderDTO userCourseOrderDTO = userCourseOrderService.getCourseOrderByOrderNo(orderNo);
+        return ResponseDTO.success(userCourseOrderDTO);
     }
 
     @Override
     @PostMapping("/updateOrderStatus")
     public ResponseDTO<?> updateOrderStatus(@RequestParam("orderNo") String orderNo, @RequestParam("status") Integer status) {
-        return null;
+        Boolean updateBoolean = userCourseOrderService.updateOrderStatus(orderNo, status);
+        return ResponseDTO.success(updateBoolean);
     }
 
     @Override
     @GetMapping("/getUserCourseOrderByUserId")
     public ResponseDTO<List<UserCourseOrderDTO>> getUserCourseOrderByUserId(@RequestParam("userId") Integer userId) {
-        return null;
+        List<UserCourseOrderDTO> userCourseOrderDTOS = userCourseOrderService.getUserCourseOrderByUserId(userId);
+        return ResponseDTO.success(userCourseOrderDTOS);
     }
 
     @Override
@@ -60,12 +66,14 @@ public class UserCourseOrderController implements UserCourseOrderRemoteService {
     @Override
     @GetMapping("/countUserCourseOrderByCourseId")
     public ResponseDTO<Integer> countUserCourseOrderByCourseId(@RequestParam("courseId") Integer courseId) {
-        return null;
+        Integer count = userCourseOrderService.countUserCourseOrderByCourseId(courseId);
+        return ResponseDTO.success(count);
     }
 
     @Override
     @GetMapping("/getOrderListByCourseId")
     public ResponseDTO<List<UserCourseOrderDTO>> getOrderListByCourseId(@RequestParam("courseId") Integer courseId) {
-        return null;
+        List<UserCourseOrderDTO> courseOrderDTOS = userCourseOrderService.getOrderListByCourseId(courseId);
+        return ResponseDTO.success(courseOrderDTOS);
     }
 }
