@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: edu-comment-boot
+  data:
+    mongodb:
+      database: edu_comment
+      host: localhost
+      port: 27017
+server:
+  port: 8090
+
+eureka:
+  server:
+    eviction-interval-timer-in-ms: 2
+    enable-self-preservation: true
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 9
+    lease-renewal-interval-in-seconds: 3
+    instance-id: ${spring.cloud.client.ipaddress}:${spring.application.name}:${server.port}:@project.version@
