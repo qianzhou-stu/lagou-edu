@@ -59,6 +59,10 @@ public class ResponseDTO<T> {
         return ResponseDTO.response(state, message, null);
     }
 
+    public boolean isSuccess() {
+        return this.state == 1;
+    }
+
     public static <T> ResponseDTO<T> ofError(String message) {
         return ResponseDTO.response(1002, message, null);
     }

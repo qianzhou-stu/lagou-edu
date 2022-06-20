@@ -9,4 +9,6 @@ public interface ICourseMediaService extends IService<CourseMedia> {
     MediaDTO getByLessonId(Integer lessonId);
 
     void updateOrSaveMedia(MediaDTO mediaDTO);
+
+    byte[] getCourseMediaDKByFileId(String fileId, String edk, Integer userId);
 }

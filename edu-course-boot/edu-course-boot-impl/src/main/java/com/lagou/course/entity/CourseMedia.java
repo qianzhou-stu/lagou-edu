@@ -1,5 +1,6 @@
 package com.lagou.course.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.Data;
 
@@ -58,12 +59,12 @@ public class CourseMedia {
     /**
     * 创建时间
     */
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
     * 更新时间
     */
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**
     * 是否删除，0未删除，1删除

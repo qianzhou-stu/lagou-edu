@@ -45,4 +45,6 @@ public interface ICourseService extends IService<Course> {
      * @return PageResultDTO<CourseDTO>
      */
     PageResultDTO<CourseDTO> getQueryCourses(CourseQueryParam courseQueryParam);
+
+    Boolean changeState(Integer courseId, Integer status);
 }

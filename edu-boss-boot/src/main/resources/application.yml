@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: edu-boss-boot
+  main:
+    allow-bean-definition-overriding: true
 eureka:
   client:
     register-with-eureka: true

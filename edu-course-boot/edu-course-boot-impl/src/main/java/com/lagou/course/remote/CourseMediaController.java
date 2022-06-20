@@ -32,7 +32,7 @@ public class CourseMediaController implements MediaRemoteService {
     public byte[] getCourseMediaDKByFileId(@RequestParam("fileId") String fileId,
                                            @RequestParam("edk") String edk,
                                            @RequestParam("userId") Integer userId) {
-        return new byte[0];
+        return courseMediaService.getCourseMediaDKByFileId(fileId, edk, userId);
     }
 
     @Override

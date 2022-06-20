@@ -1,5 +1,7 @@
 package com.lagou.course.remote;
 
+import com.lagou.common.entity.vo.Result;
+import com.lagou.common.response.EduEnum;
 import com.lagou.course.api.CourseRemoteService;
 import com.lagou.course.api.dto.CourseDTO;
 import com.lagou.course.api.dto.PageResultDTO;
@@ -7,10 +9,7 @@ import com.lagou.course.api.param.CourseQueryParam;
 import com.lagou.course.service.ICourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -85,5 +84,16 @@ public class  CourseController implements CourseRemoteService {
     @GetMapping("/getQueryCourses")
     public PageResultDTO<CourseDTO> getQueryCourses(CourseQueryParam courseQueryParam) {
         return courseService.getQueryCourses(courseQueryParam);
+    }
+
+    @Override
+    @PostMapping(value = "/changeState")
+    public Result changeState(@RequestParam("courseId") Integer courseId,
+                              @RequestParam("status") Integer status) {
+        Boolean b = courseService.changeState(courseId, status);
+        if (b){
+            return Result.success();
+        }
+        return Result.fail(EduEnum.UPDATE_FAILURE);
     }
 }
