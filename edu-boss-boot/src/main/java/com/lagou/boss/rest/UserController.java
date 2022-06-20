@@ -1,90 +1,48 @@
 package com.lagou.boss.rest;
 
-import com.lagou.boss.entity.bo.UpLoadResult;
-import com.lagou.boss.entity.form.CourseForm;
-import com.lagou.boss.entity.vo.CourseVo;
-import com.lagou.boss.service.OssService;
+
+import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lagou.common.entity.vo.Result;
-import com.lagou.common.response.EduEnum;
-import com.lagou.common.util.ConvertUtil;
-import com.lagou.course.api.CourseRemoteService;
-import com.lagou.course.api.dto.ActivityCourseDTO;
-import com.lagou.course.api.dto.CourseDTO;
-import com.lagou.course.api.dto.PageResultDTO;
-import com.lagou.course.api.dto.TeacherDTO;
-import com.lagou.course.api.param.CourseQueryParam;
+import com.lagou.user.api.dto.UserDTO;
+import com.lagou.user.api.feign.UserRemoteService;
+import com.lagou.user.api.param.UserQueryParam;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-@Api(tags = "课程", produces = "application/json")
-@Slf4j
 @RestController
-@RequestMapping("/course/")
+@RequestMapping("/user/")
+@Api(tags = "用户接口")
+@Slf4j
 public class UserController {
-
     @Autowired
-    private CourseRemoteService courseRemoteService;
-    @Autowired
-    private OssService ossService;
+    private UserRemoteService userRemoteService;
 
-    @ApiOperation(value = "保存或者更新课程信息")
-    @PostMapping("/saveOrUpdateCourse")
-    public Result saveOrUpdateCourse(@RequestBody CourseForm courseForm){
-        // 对前端传入的信息更新
-        CourseDTO courseDTO = new CourseDTO();
-        ConvertUtil.convert(courseForm, courseDTO);
-        boolean b = courseRemoteService.saveOrUpdateCourse(courseDTO);
-        if (b){
-            return Result.success();
+    @ApiOperation(value = "分页查询用户信息")
+    @GetMapping("getUserPages")
+    public Result getUserPages(@RequestBody UserQueryParam userQueryParam) {
+        log.info("分页查询用户信息：{}", JSON.toJSONString(userQueryParam));
+        Integer pageNum = userQueryParam.getPageNum();
+        Integer pageSize = userQueryParam.getPageSize();
+        if (null == pageNum || pageNum <= 0) {
+            userQueryParam.setPageNum(1);
         }
-        return Result.fail(EduEnum.INSERT_OR_UPDATE_FAILURE);
+        if (null == pageSize || pageSize <= 0) {
+            userQueryParam.setPageSize(10);
+        }
+        Page<UserDTO> userPages =
+                userRemoteService.getUserPages(userQueryParam);
+        return Result.success(userPages);
     }
 
-    @ApiOperation(value = "通过课程Id获取课程信息")
-    @GetMapping("/getCourseById")
-    public Result<CourseVo> getCourseById(@RequestParam("courseId") Integer courseId)  {
-        // 拿到对应的用户信息 判断用户是否已经登录
-        CourseDTO courseDTO = courseRemoteService.getCourseById(courseId, null);
-        CourseVo courseVo = new CourseVo();
-        ActivityCourseDTO activityCourseDTO = courseDTO.getActivityCourseDTO();
-        ActivityCourseDTO activityCourseDTOConvert = ConvertUtil.convert(activityCourseDTO, ActivityCourseDTO.class);
-        courseVo.setActivityCourseDTO(activityCourseDTOConvert);
-        TeacherDTO teacherDTO = courseDTO.getTeacherDTO();
-        TeacherDTO teacherConvert = ConvertUtil.convert(teacherDTO, TeacherDTO.class);
-        courseVo.setTeacherDTO(teacherConvert);
-        courseVo = ConvertUtil.convert(courseDTO, CourseVo.class);
-        return Result.success(courseVo);
+    @ApiOperation(value = "封禁用户")
+    @GetMapping("forbidUser")
+    public Result forbidUser(@RequestParam("userId") Integer userId) {
+        log.info("封禁用户:{}", userId);
+        boolean result = userRemoteService.forbidUser(userId);
+        return Result.success(result);
     }
-
-    @ApiOperation(value = "课程上下架")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "courseId", value = "课程ID"),
-            @ApiImplicitParam(name = "status", value = "课程状态，0-草稿，1-上架")
-    })
-    @PostMapping("/changeState")
-    public Result changeState(@RequestParam("courseId") Integer courseId,
-                              @RequestParam("status") Integer status){
-        return courseRemoteService.changeState(courseId, status);
-    }
-
-    @ApiOperation(value = "分页查询课程信息")
-    @PostMapping("getQueryCourses")
-    public Result getQueryCourses(@RequestBody CourseQueryParam courseQueryParam){
-        PageResultDTO<CourseDTO> queryCourses = courseRemoteService.getQueryCourses(courseQueryParam);
-        return Result.success(queryCourses);
-    }
-    @ApiOperation(value = "上传图片")
-    @PostMapping("/upload")
-    @ResponseBody
-    public Result upload(@RequestParam("file") MultipartFile multipartFile) {
-        UpLoadResult upLoadResult = ossService.upload(multipartFile);
-        return Result.success(upLoadResult);
-    }
-
 }
