@@ -33,7 +33,7 @@ public interface UserRemoteService {
 
     // 注册用户
     @PostMapping("/saveUser")
-    Boolean saveUser(@RequestBody UserDTO userDTO);
+    UserDTO saveUser(@RequestBody UserDTO userDTO);
 
     // 更新用户
     @PostMapping("updateUser")

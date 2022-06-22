@@ -62,7 +62,7 @@ public class UserController implements UserRemoteService {
 
     @Override
     @PostMapping("/saveUser")
-    public Boolean saveUser(@RequestBody UserDTO userDTO) {
+    public UserDTO saveUser(@RequestBody UserDTO userDTO) {
         return userService.saveUser(userDTO);
     }
 
