@@ -5,7 +5,7 @@ import lombok.Setter;
 
 /**
  * @ClassName AlertException
- * @Description TODO
+ * @Description AlertException
  * @Author zhouqian
  * @Date 2022/4/8 09:59
  * @Version 1.0

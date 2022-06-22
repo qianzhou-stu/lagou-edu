@@ -4,7 +4,7 @@ import lombok.Getter;
 
 /**
  * @ClassName SystemErrorType
- * @Description TODO
+ * @Description SystemErrorType
  * @Author zhouqian
  * @Date 2022/4/8 10:00
  * @Version 1.0
@@ -25,6 +25,8 @@ public enum SystemErrorType implements ErrorType {
     DUPLICATE_PRIMARY_KEY("030000","唯一键冲突"),
 
     NOT_UNIQUE_USER_PRIMARY_KEY("030001", "用户的id不能为空"),
+    INTERNAL_ERROR("030002", "服务器内部错误"),
+    NOT_LOGIN("030003","用户未登录，获取未空"),
     ;
     /**
      * 错误类型码
