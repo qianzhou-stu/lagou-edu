@@ -18,6 +18,12 @@ spring:
             - Path=/boss/**
           filters:
             - StripPrefix=1
+        - id: lagou-edu-bom
+          uri: lb://edu-bom-boot
+          predicates:
+            - Path=/bom/**
+          filters:
+            - StripPrefix=1
 #    config:
 #      discovery:
 #        service-id: edu-config-boot
@@ -34,3 +40,9 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipaddress}:${spring.application.name}:${server.port}:@project.version@
+
+# 网关白名单，无需要鉴权url
+gate:
+  ignore:
+    authentication:
+      startWith: /oauth,/open,/v2/api-docs,/user/login,/course,/ad,/pay,/doc.html,/webjars,/swagger,/pay/wxCallback,/pay/zfbCallback,/user/vfcode,/user/refresh_token,/weixin,/comment,/permission/getUserPermissions

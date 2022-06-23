@@ -58,7 +58,7 @@ public class MultAuthenticationFilter extends GenericFilterBean implements Appli
 
             //设置集成登录信息
             MultAuthentication multAuthentication = new MultAuthentication();
-            multAuthentication.setAuthType(request.getParameter(AUTH_TYPE_PARAM_NAME));
+            multAuthentication.setAuthType(request.getParameter(AUTH_TYPE_PARAM_NAME)); // 从请求参数中拿到对应auth_type
             multAuthentication.setAuthParameters(request.getParameterMap());
             // 放入当前线程中
             MultAuthenticationContext.set(multAuthentication);

@@ -6,6 +6,9 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/edu_user?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: "!andreaszhou"
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
 management:
   endpoints:
     web:

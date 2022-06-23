@@ -1,5 +1,8 @@
 server:
   port: 8092
+spring:
+  application:
+    name: edu-bom-boot
 eureka:
   client:
     registry-fetch-interval-seconds: 5

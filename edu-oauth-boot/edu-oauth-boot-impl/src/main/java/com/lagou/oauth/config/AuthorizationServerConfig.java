@@ -34,6 +34,9 @@ import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * oauth2.0 配置的类
+ */
 @Slf4j
 @Configuration
 @EnableAuthorizationServer
@@ -49,14 +52,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
     @Autowired
-    private MultAuthenticationFilter multAuthenticationFilter;
+    private MultAuthenticationFilter multAuthenticationFilter; // 自定义多认证过滤器
     /**
      * jwt 对称加密密钥
      */
     @Value("${spring.security.oauth2.jwt.signingKey}")
     private String signingKey;
 
-    // 用来配置令牌端点的安全约束。
+    // 用来配置令牌端点的安全约束。 配置允许访问token的地址
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
         // 支持将client参数放在header或body中
@@ -65,7 +68,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .checkTokenAccess("permitAll()") // /oauth/check_token公开
                 .allowFormAuthenticationForClients() // 表单认证，申请令牌
 //                .tokenEndpointAuthenticationFilters(null)
-                .addTokenEndpointAuthenticationFilter(multAuthenticationFilter);
+                .addTokenEndpointAuthenticationFilter(multAuthenticationFilter); // 添加token认证的多过滤器
     }
 
     // 配置客户端的详细信息服务

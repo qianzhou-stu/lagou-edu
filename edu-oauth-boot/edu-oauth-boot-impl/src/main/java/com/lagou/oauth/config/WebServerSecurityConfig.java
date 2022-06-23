@@ -15,6 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 
+/**
+ * web服务安全 配置的类
+ */
 @Configuration
 @EnableWebSecurity
 public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -23,6 +26,11 @@ public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("userDetailsService")
     private UserDetailsService userDetailsService;
 
+    /**
+     * 配置可以访问的地址
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable(); // 禁用csrf()
@@ -39,6 +47,11 @@ public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
+    /**
+     * 释放静态资源的拦截
+     * @param web
+     * @throws Exception
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
         // 解决静态资源被拦截的问题

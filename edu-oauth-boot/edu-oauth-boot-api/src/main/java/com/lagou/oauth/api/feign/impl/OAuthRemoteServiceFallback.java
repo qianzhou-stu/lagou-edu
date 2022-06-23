@@ -1,12 +1,24 @@
 package com.lagou.oauth.api.feign.impl;
 
-/**
- * @ClassName OAuthRemoteServiceFallback
- * @Description TODO
- * @Author zhouqian
- * @Date 2022/4/7 10:20
- * @Version 1.0
- */
 
-public class OAuthRemoteServiceFallback {
+
+import com.lagou.oauth.api.feign.OAuthRemoteService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+@Slf4j
+@Component
+public class OAuthRemoteServiceFallback implements OAuthRemoteService {
+
+    @Override
+    public String createToken(String phone, String password, String scope, String grantType, String clientId, String clientSecret, String authType) {
+        log.error("手机号[{}],发放access_token发生异常", phone);
+        return null;
+    }
+
+    @Override
+    public String refreshToken(String refreshToken, String grantType, String clientId, String clientSecret) {
+        log.error("refreshToken[{}],刷新access_token发生异常", refreshToken);
+        return null;
+    }
 }
