@@ -1,6 +1,8 @@
 server:
   port: 8095
 spring:
+  application:
+    name: edu-user-boot
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/edu_user?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
@@ -8,7 +10,6 @@ spring:
     password: "!andreaszhou"
   main:
     allow-bean-definition-overriding: true
-    allow-circular-references: true
 management:
   endpoints:
     web:

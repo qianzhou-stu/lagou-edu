@@ -6,8 +6,11 @@ spring:
       database: edu_comment
       host: localhost
       port: 27017
+      # uri: 127.0.0.1
+  main:
+    allow-bean-definition-overriding: true
 server:
-  port: 8090
+  port: 8097
 
 eureka:
   server:

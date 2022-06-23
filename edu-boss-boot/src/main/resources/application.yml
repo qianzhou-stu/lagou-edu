@@ -5,12 +5,15 @@ spring:
     name: edu-boss-boot
   main:
     allow-bean-definition-overriding: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      default-Zone: http://127.0.0.1/eureka
+      default-Zone: http://127.0.0.1:8761/eureka/
     registry-fetch-interval-seconds: 5
   instance:
     prefer-ip-address: true

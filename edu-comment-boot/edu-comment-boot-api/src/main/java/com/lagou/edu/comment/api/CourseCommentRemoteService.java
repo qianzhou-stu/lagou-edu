@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "edu-comment-boot-courseCommentRemoteService}", path = "/comment")
+@FeignClient(name = "edu-comment-boot-courseCommentRemoteService", path = "/comment")
 public interface CourseCommentRemoteService {
     /**
      * 获取课程或课时下的用户评论,
