@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @ClassName WeixinController
- * @Description TODO
+ * @Description WeixinController
  * @Author zhouqian
  * @Date 2022/4/10 21:49
  * @Version 1.0
@@ -30,26 +30,33 @@ public class WeixinController implements UserWeixinRemoteService {
 
     @Override
     public WeixinDTO getUserWeixinByOpenId(@RequestParam("openId") String openId) {
-        return null;
+        return weixinService.getUserWeixinByOpenId(openId);
     }
 
     @Override
     public WeixinDTO getUserWeixinByUnionId(@RequestParam("unionId") String unionId) {
-        return null;
+        return weixinService.getUserWeixinByUnionId(unionId);
+    }
+
+    @Override
+    public Boolean updateUserWeixin(WeixinDTO weixinDTO) {
+        return weixinService.updateUserWeixin(weixinDTO);
     }
 
     @Override
     public WeixinDTO saveUserWeixin(@RequestBody WeixinDTO weixinDTO) {
-        return null;
+        return weixinService.saveUserWeixin(weixinDTO);
     }
+
+
 
     @Override
     public Result<WeixinDTO> bindUserWeixin(@RequestBody WeixinDTO weixinDTO) {
-        return null;
+        return weixinService.bindUserWeixin(weixinDTO);
     }
 
     @Override
     public boolean unBindUserWeixin(@RequestParam("userId") Integer userId) {
-        return false;
+        return weixinService.unBindUserWeixin(userId);
     }
 }

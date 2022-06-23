@@ -7,6 +7,18 @@ public enum ResultCode {
     SUCCESS(1, "操作成功"),
 
     /**
+     * 200, "已绑定，无需处理"
+     */
+    ALREADY_BIND(200, "已绑定，无需处理"),
+    /**
+     * 201, 该用户已绑定其他unionId
+     */
+    ALREADY_BIND_UNIONID(201, "该用户已绑定其他unionId"),
+    /**
+     * 202, 该unionId已绑定其他用户
+     */
+    ALREADY_BIND_USERID(202, "该unionId已绑定其他用户"),
+    /**
      * 1002, 服务器内部错误
      */
     INTERNAL_ERROR(1002, "服务器内部错误"),

@@ -25,6 +25,6 @@ public interface IUserService {
     @Cacheable(value = "#userId")
     UserDTO getByUserId(@RequestParam("userId") Integer userId);
 
-    Boolean save(@RequestParam("name") String name, @RequestParam("phone") String phone,
+    UserDTO save(@RequestParam("name") String name, @RequestParam("phone") String phone,
                  @RequestParam("portrait") String portrait, @RequestParam("password") String password);
 }

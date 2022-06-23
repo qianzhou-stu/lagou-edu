@@ -27,7 +27,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Boolean save(String name, String phone, String portrait, String password) {
+    public UserDTO save(String name, String phone, String portrait, String password) {
         UserDTO dto = new UserDTO();
         dto.setAccountNonExpired(true);
         dto.setAccountNonLocked(true);

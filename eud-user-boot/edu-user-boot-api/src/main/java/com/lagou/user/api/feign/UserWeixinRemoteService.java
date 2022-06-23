@@ -22,6 +22,9 @@ public interface UserWeixinRemoteService {
     @PostMapping("/saveUserWeixin")
     WeixinDTO saveUserWeixin(@RequestBody WeixinDTO weixinDTO);
 
+    @PostMapping("/updateUserWeixin")
+    Boolean updateUserWeixin(WeixinDTO weixinDTO);
+
     @PostMapping("/bindUserWeixin")
     Result<WeixinDTO> bindUserWeixin(@RequestBody WeixinDTO weixinDTO);
 
