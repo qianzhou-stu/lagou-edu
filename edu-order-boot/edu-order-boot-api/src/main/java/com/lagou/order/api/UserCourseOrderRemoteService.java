@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "${remote.feign.edu-order-boot.name:edu-order-boot}", path = "/userCourseOrder")
+// @FeignClient(name = "${remote.feign.edu-order-boot.name:edu-order-boot}", path = "/userCourseOrder")
+@FeignClient(name = "edu-order-boot-userCourseOrderRemoteService", path = "/userCourseOrder")
 public interface UserCourseOrderRemoteService {
     /**
      * 创建订单 保存支付订单

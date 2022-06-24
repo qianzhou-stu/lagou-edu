@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Version 1.0
  */
 //@FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/activityCourse")
-@FeignClient(name = "edu-course-boot.ActivityCourseRemoteService", path = "/activityCourse")
+@FeignClient(name = "edu-course-boot-activityCourseRemoteService", path = "/activityCourse")
 public interface ActivityCourseRemoteService {
 
     /**

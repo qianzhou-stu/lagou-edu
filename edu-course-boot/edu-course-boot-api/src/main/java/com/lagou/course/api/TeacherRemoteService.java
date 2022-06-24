@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @Version 1.0
  */
 //@FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/teacher")
-@FeignClient(name = "edu-course-boot.TeacherRemoteService", path = "/teacher")
+@FeignClient(name = "edu-course-boot-teacherRemoteService", path = "/teacher")
 public interface TeacherRemoteService {
     /**
      * 通过课程Id获取老师信息

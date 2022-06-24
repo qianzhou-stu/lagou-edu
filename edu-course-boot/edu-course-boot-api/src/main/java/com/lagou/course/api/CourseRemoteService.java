@@ -17,7 +17,7 @@ import java.util.List;
  * @author mkp
  */
 // @FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/course")
-@FeignClient(name = "edu-course-boot.CourseRemoteService", path = "/course")
+@FeignClient(name = "edu-course-boot-courseRemoteService", path = "/course")
 public interface CourseRemoteService {
     /**
      * 获取选课列表

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "edu-user-boot", path = "/user/weixin")
+@FeignClient(name = "edu-user-boot-userWeixinRemoteService", path = "/user/weixin")
 public interface UserWeixinRemoteService {
     @GetMapping("/getUserWeixinByUserId")
     WeixinDTO getUserWeixinByUserId(@RequestParam("userId") Integer userId);

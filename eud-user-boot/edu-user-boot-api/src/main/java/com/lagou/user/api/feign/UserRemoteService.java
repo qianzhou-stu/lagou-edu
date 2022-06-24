@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "edu-user-boot", path = "/user")
+@FeignClient(name = "edu-user-boot-userRemoteService", path = "/user")
 public interface UserRemoteService {
     // 根据id查询用户
     @GetMapping("/getUserById")
