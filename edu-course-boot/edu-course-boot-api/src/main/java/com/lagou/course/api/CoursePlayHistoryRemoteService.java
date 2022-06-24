@@ -16,8 +16,7 @@ import java.util.List;
  * @Date 2022/6/6 18:29
  * @Version 1.0
  */
-// @FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/course/coursePlayHistory")
-@FeignClient(name = "edu-course-boot-coursePlayHistoryRemoteService", path = "/course/coursePlayHistory")
+@FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/course/coursePlayHistory")
 public interface CoursePlayHistoryRemoteService {
 
     /**

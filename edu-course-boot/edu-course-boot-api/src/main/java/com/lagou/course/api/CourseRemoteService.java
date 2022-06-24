@@ -16,8 +16,7 @@ import java.util.List;
 /**
  * @author mkp
  */
-// @FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/course")
-@FeignClient(name = "edu-course-boot-courseRemoteService", path = "/course")
+@FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/course")
 public interface CourseRemoteService {
     /**
      * 获取选课列表
@@ -59,4 +58,10 @@ public interface CourseRemoteService {
    @PostMapping(value = "/changeState")
    public Result changeState(@RequestParam("courseId") Integer courseId,
                              @RequestParam("status") Integer status);
+
+    /**
+     * 根据配置的自动上架时间，定时任务扫描达到上架时间的草稿状态的课程进行上架。
+     */
+    @PostMapping(value = "/courseAutoOnline")
+    void courseAutoOnline();
 }

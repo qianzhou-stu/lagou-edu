@@ -5,8 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-// @FeignClient(name = "${remote.feign.edu-oauth-boot.name:edu-oauth-boot}", fallback = OAuthRemoteServiceFallback.class)
-@FeignClient(name = "edu-bom-boot-oAuthRemoteService", fallback = OAuthRemoteServiceFallback.class)
+@FeignClient(name = "${remote.feign.edu-oauth-boot.name:edu-oauth-boot}", fallback = OAuthRemoteServiceFallback.class)
 public interface OAuthRemoteService {
 
     /**

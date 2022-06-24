@@ -96,4 +96,9 @@ public class  CourseController implements CourseRemoteService {
         }
         return Result.fail(EduEnum.UPDATE_FAILURE);
     }
+
+    @Override
+    public void courseAutoOnline() {
+        courseService.courseAutoOnline();
+    }
 }

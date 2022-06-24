@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Set;
 
-@FeignClient(name = "edu-boss-boot-organizationProvider", fallback = OrganizationProviderFallback.class)
+@FeignClient(name = "${remote.feign.edu-boss-boot.name:edu-boss-boot}", fallback = OrganizationProviderFallback.class)
 public interface OrganizationProvider {
 
     /**

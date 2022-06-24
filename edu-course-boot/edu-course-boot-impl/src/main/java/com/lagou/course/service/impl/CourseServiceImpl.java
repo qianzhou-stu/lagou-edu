@@ -3,6 +3,7 @@ package com.lagou.course.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -462,5 +463,15 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         course.setStatus(status);
         int i = courseMapper.updateById(course);
         return i > 0;
+    }
+
+    @Override
+    @Transactional(value = "courseAutoOnline", rollbackFor = Exception.class)
+    public void courseAutoOnline() {
+        UpdateWrapper<Course> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.set("status", 1).set("update_time", LocalDateTime.now());
+        updateWrapper.eq("status",0).isNotNull("auto_online_time")
+                .le("auto_online_time", LocalDateTime.now());
+        this.update(updateWrapper);
     }
 }

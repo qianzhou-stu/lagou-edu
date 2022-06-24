@@ -20,7 +20,8 @@
         <module>edu-authority-boot</module>
         <module>edu-oauth-boot</module>
         <module>edu-common-boot</module>
-       <!-- <module>edu-oauth-boot</module>-->
+        <module>edu-job-boot</module>
+        <!-- <module>edu-oauth-boot</module>-->
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
