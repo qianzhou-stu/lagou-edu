@@ -1,6 +1,7 @@
 package com.lagou.course.api;
 
 
+import com.lagou.common.entity.vo.Result;
 import com.lagou.course.api.dto.CourseDTO;
 import com.lagou.course.api.dto.PageResultDTO;
 import com.lagou.course.api.param.CourseQueryParam;
@@ -15,13 +16,12 @@ import java.util.List;
 /**
  * @author mkp
  */
-// @FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/course")
-@FeignClient(name = "edu-course-boot.CourseRemoteService", path = "/course")
+@FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/course")
 public interface CourseRemoteService {
     /**
      * 获取选课列表
      * @param userId
-     * @return
+     * @return List<CourseDTO>
      */
     @GetMapping("/getAllCourses")
     List<CourseDTO> getAllCourses(@RequestParam(required = false, name = "userId") Integer userId);
@@ -29,7 +29,7 @@ public interface CourseRemoteService {
     /**
      * 获取已购课程信息
      * @param userId
-     * @return
+     * @return List<CourseDTO>
      */
     @GetMapping("/getPurchasedCourse")
     List<CourseDTO> getPurchasedCourse(@RequestParam("userId") Integer userId);
@@ -54,4 +54,14 @@ public interface CourseRemoteService {
 
    @PostMapping(value = "/getQueryCourses",consumes = "application/json")
    PageResultDTO<CourseDTO> getQueryCourses(@RequestBody CourseQueryParam courseQueryParam);
+
+   @PostMapping(value = "/changeState")
+   public Result changeState(@RequestParam("courseId") Integer courseId,
+                             @RequestParam("status") Integer status);
+
+    /**
+     * 根据配置的自动上架时间，定时任务扫描达到上架时间的草稿状态的课程进行上架。
+     */
+    @PostMapping(value = "/courseAutoOnline")
+    void courseAutoOnline();
 }

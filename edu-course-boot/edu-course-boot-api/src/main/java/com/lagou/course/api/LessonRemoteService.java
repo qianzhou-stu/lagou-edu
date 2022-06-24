@@ -17,8 +17,7 @@ import java.util.Map;
  * @Date 2022/6/6 18:28
  * @Version 1.0
  */
-//@FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/course/lesson")
-@FeignClient(name = "edu-course-boot.LessonRemoteService", path = "/course/lesson")
+@FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/course/lesson")
 public interface LessonRemoteService {
 
     /**

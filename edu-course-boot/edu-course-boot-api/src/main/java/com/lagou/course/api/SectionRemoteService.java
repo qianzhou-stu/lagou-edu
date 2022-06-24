@@ -16,8 +16,7 @@ import java.util.List;
  * @Date 2022/6/6 18:27
  * @Version 1.0
  */
-//@FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/course/section")
-@FeignClient(name = "edu-course-boot.SectionRemoteService", path = "/course/section")
+@FeignClient(name = "${remote.feign.edu-course-boot.name:edu-course-boot}", path = "/course/section")
 public interface SectionRemoteService {
     /**
      * 保存课程

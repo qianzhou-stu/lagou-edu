@@ -4,7 +4,7 @@ import lombok.Getter;
 
 /**
  * @ClassName BaseException
- * @Description TODO
+ * @Description BaseException
  * @Author zhouqian
  * @Date 2022/4/8 10:00
  * @Version 1.0

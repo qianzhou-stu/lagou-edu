@@ -2,7 +2,7 @@ package com.lagou.common.exception;
 
 /**
  * @ClassName ErrorType
- * @Description TODO
+ * @Description ErrorType
  * @Author zhouqian
  * @Date 2022/4/8 10:00
  * @Version 1.0

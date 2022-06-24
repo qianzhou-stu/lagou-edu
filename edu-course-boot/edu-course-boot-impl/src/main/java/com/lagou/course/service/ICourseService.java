@@ -45,4 +45,11 @@ public interface ICourseService extends IService<Course> {
      * @return PageResultDTO<CourseDTO>
      */
     PageResultDTO<CourseDTO> getQueryCourses(CourseQueryParam courseQueryParam);
+
+    Boolean changeState(Integer courseId, Integer status);
+
+    /**
+     * 根据配置的自动上架时间，定时任务扫描达到上架时间的草稿状态的课程进行上架。
+     */
+    void courseAutoOnline();
 }

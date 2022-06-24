@@ -85,11 +85,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public Boolean saveUser(UserDTO userDTO) {
-        if (userDTO.getPhone() == null){
+    public UserDTO saveUser(UserDTO userDTO) {
+        /*if (userDTO.getPhone() == null){
             log.info("手机号为空，无法注册");
             return false;
-        }
+        }*/
         User user = ConvertUtil.convert(userDTO, User.class);
         user.setPassword(encoder.encode(user.getPassword()));
         // 重新设置用户昵称
@@ -100,8 +100,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         Date date = new Date();
         user.setCreateTime(date);
         user.setUpdateTime(date);
-        int count = userMapper.insert(user);
-        return count == 1;
+        userMapper.insert(user);
+        return userDTO;
     }
 
     @Override

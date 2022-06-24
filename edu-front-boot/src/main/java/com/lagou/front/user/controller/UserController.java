@@ -83,8 +83,8 @@ public class UserController {
 
     @PostMapping("/saveUser")
     public ResponseDTO saveUser(@RequestBody UserDTO userDTO) {
-        boolean b = userRemoteService.saveUser(userDTO);
-        if (b) {
+        UserDTO user = userRemoteService.saveUser(userDTO);
+        if (user != null) {
             return ResponseDTO.success();
         } else {
             return ResponseDTO.ofError(EduEnum.INSERT_FAILURE.getCode(), EduEnum.INSERT_FAILURE.getMsg());
@@ -179,8 +179,8 @@ public class UserController {
             dto.setPhone(phone);
             dto.setUpdateTime(new Date());
             dto.setPortrait(null);
-            boolean newUser = userRemoteService.saveUser(dto);
-            if (!newUser) {
+            UserDTO newUser = userRemoteService.saveUser(dto);
+            if (newUser == null) {
                 log.info("用户注册失败");
                 return ResponseDTO.ofError(EduEnum.INSERT_FAILURE.getCode(), EduEnum.INSERT_FAILURE.getMsg());
             }

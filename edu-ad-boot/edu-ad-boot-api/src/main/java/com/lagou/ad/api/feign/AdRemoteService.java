@@ -17,7 +17,7 @@ import java.util.List;
  * @Date 2022/4/4 10:17
  * @Version 1.0
  */
-@FeignClient(name = "edu-ad-boot", path = "/ad")
+@FeignClient(name = "${remote.feign.edu-ad-boot.name:edu-ad-boot}", path = "/ad")
 public interface AdRemoteService {
     // 获取所有的广告位
     @GetMapping("/space/getAllSpaces")

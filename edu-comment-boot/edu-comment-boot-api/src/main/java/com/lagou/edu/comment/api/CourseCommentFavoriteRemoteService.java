@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "edu-comment-boot-courseCommentFavoriteRemoteService", path = "/commentfavorite")
+@FeignClient(name = "${remote.feign.edu-comment-boot.name:edu-comment-boot}", path = "/commentfavorite")
 public interface CourseCommentFavoriteRemoteService {
 
     @GetMapping("/getUserById")

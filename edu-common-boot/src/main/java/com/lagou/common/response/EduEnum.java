@@ -16,6 +16,7 @@ public enum EduEnum {
     ISNULL_REFRESH_TOKEN(1011,"refresh_token为空"),
     LOGIN_FAILURE(1012,"登录失败"),
     ERROR_CODE(1013,"验证码错误"),
+    INSERT_OR_UPDATE_FAILURE(1014, "创建或者更新失败"),
     ;
     private Integer code;
     private String msg;

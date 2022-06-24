@@ -20,12 +20,13 @@
         <module>edu-authority-boot</module>
         <module>edu-oauth-boot</module>
         <module>edu-common-boot</module>
-       <!-- <module>edu-oauth-boot</module>-->
+        <module>edu-job-boot</module>
+        <!-- <module>edu-oauth-boot</module>-->
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.6</version>
+        <version>2.5.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lagou</groupId>
@@ -35,7 +36,7 @@
     <description>lagou-edu</description>
     <properties>
         <java.version>1.8</java.version>
-        <spring-cloud.version>2021.0.1</spring-cloud.version>
+        <spring-cloud.version>2020.0.5</spring-cloud.version>
         <druid.version>1.2.6</druid.version>
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <mybatis-plus.generator.version>3.4.1</mybatis-plus.generator.version>
@@ -112,15 +113,15 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                    <skip>true</skip>
-                </configuration>
+<!--                <configuration>-->
+<!--                    <excludes>-->
+<!--                        <exclude>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                        </exclude>-->
+<!--                    </excludes>-->
+<!--                    <skip>true</skip>-->
+<!--                </configuration>-->
                 <executions>
                     <execution>
                         <goals>

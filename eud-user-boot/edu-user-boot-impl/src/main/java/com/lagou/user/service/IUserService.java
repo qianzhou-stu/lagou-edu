@@ -22,7 +22,7 @@ public interface IUserService extends IService<User> {
 
     UserDTO getUserByPhone(String phone);
 
-    Boolean saveUser(UserDTO userDTO);
+    UserDTO saveUser(UserDTO userDTO);
 
     boolean updateUser(UserDTO userDTO);
 

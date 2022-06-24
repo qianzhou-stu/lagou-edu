@@ -1,12 +1,26 @@
 server:
-  port: 8092
+  port: 8093
+spring:
+  application:
+    name: edu-bom-boot
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  oauth:
+    client_id: test_client
+    client_secret: test_secret
+    scope: read
+    grant_type: password
+    refresh_grant_type: refresh_token
 eureka:
   client:
     registry-fetch-interval-seconds: 5
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      default-Zone: http://127.0.0.1/eureka
+      default-Zone: http://127.0.0.1:8761/eureka/
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipaddress}:${spring.application.name}:${server.port}:@project.version@
