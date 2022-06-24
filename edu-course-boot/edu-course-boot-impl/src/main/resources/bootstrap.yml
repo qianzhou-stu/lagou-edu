@@ -6,6 +6,8 @@ spring:
     url: jdbc:mysql:///edu_course?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: "!andreaszhou"
+  main:
+    allow-bean-definition-overriding: true
 server:
   port: 8089
 eureka:
