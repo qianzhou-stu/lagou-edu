@@ -7,10 +7,12 @@ import com.lagou.user.service.IVerificationCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.lagou.user.api.feign.VerificationCodeRemoteService;
 
 @RestController
 @RequestMapping("/user/vfcode")
-public class VerificationCodeRemoteService {
+public class VerificationCodeController implements VerificationCodeRemoteService {
+
     @Autowired
     private IVerificationCodeService verificationCodeService;
     @RequestMapping(value = "/sendCode")
