@@ -32,6 +32,15 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.lagou</groupId>
+            <artifactId>edu-oauth-boot-api</artifactId>
+            <version>v1.0</version>
+        </dependency>
+       <!-- <dependency>
+            <groupId></groupId>
+            <artifactId>authen</artifactId>
+        </dependency>-->
     </dependencies>
 
     <build>

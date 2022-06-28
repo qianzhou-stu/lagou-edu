@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>edu-front-boot</module>
+       <!-- <module>edu-front-boot</module>-->
         <module>edu-bom-boot</module>
         <module>edu-boss-boot</module>
         <module>edu-gateway-boot</module>

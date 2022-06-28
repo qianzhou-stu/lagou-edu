@@ -25,6 +25,11 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+            <!--<version>11.0</version>-->
+        </dependency>
+        <dependency>
             <groupId>com.lagou</groupId>
             <artifactId>edu-common-boot</artifactId>
             <version>v1.0</version>
