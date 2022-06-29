@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lagou.authority.mapper.RoleMenuRelationMapper">
+
+    <resultMap id="BaseResultMap" type="com.lagou.authority.entity.po.RoleMenuRelation">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="menuId" column="menu_id" jdbcType="INTEGER"/>
+            <result property="roleId" column="role_id" jdbcType="INTEGER"/>
+            <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+            <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+            <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+            <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,menu_id,role_id,
+        created_time,updated_time,created_by,
+        updated_by
+    </sql>
+</mapper>
