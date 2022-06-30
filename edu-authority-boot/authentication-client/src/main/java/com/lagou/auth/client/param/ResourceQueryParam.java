@@ -15,7 +15,7 @@ import org.checkerframework.checker.units.qual.A;
 @Data
 @NoArgsConstructor
 @ToString
-public class ResourceQueryParam {
+public class ResourceQueryParam extends BaseQueryParam{
     @ApiModelProperty("资源名称")
     private String name;
 

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lagou.authority.mapper.RolesMapper">
+<mapper namespace="com.lagou.authority.mapper.RoleMapper">
 
-    <resultMap id="BaseResultMap" type="com.lagou.authority.entity.po.Roles">
+    <resultMap id="BaseResultMap" type="com.lagou.authority.entity.bo.Role">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="code" column="code" jdbcType="VARCHAR"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>

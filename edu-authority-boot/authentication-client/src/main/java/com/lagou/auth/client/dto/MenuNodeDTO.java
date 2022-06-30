@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @ToString
-public class MenuNodeDTO {
+public class MenuNodeDTO extends MenuDTO{
     @ApiModelProperty("是否被选中，用于编辑菜单时标记所选中上级菜单")
     private boolean selected;
 

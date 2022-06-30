@@ -1,7 +1,7 @@
 package com.lagou.authority.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lagou.authority.entity.po.RoleResourceRelation;
+import com.lagou.authority.entity.bo.RoleResourceRelation;
 import org.springframework.stereotype.Repository;
 
 

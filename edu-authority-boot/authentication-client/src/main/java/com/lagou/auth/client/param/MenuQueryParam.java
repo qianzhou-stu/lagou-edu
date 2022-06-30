@@ -12,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class MenuQueryParam {
+public class MenuQueryParam extends BaseQueryParam {
     @ApiModelProperty("菜单名称")
     private String name;
 

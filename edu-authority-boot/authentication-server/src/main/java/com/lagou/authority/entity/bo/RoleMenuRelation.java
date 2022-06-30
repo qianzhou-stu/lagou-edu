@@ -1,4 +1,4 @@
-package com.lagou.authority.entity.po;
+package com.lagou.authority.entity.bo;
 
 import lombok.Data;
 
@@ -6,20 +6,20 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 角色和资源关系表
- * @TableName role_resource_relation
+ * 角色和菜单关系表
+ * @TableName role_menu_relation
  */
 @Data
-public class RoleResourceRelation implements Serializable {
+public class RoleMenuRelation implements Serializable {
     /**
-     * 关系id
+     * id
      */
     private Integer id;
 
     /**
-     * 资源id
+     * 菜单id
      */
-    private Integer resourceId;
+    private Integer menuId;
 
     /**
      * 角色id
@@ -59,9 +59,9 @@ public class RoleResourceRelation implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        RoleResourceRelation other = (RoleResourceRelation) that;
+        RoleMenuRelation other = (RoleMenuRelation) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getResourceId() == null ? other.getResourceId() == null : this.getResourceId().equals(other.getResourceId()))
+            && (this.getMenuId() == null ? other.getMenuId() == null : this.getMenuId().equals(other.getMenuId()))
             && (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()))
             && (this.getCreatedTime() == null ? other.getCreatedTime() == null : this.getCreatedTime().equals(other.getCreatedTime()))
             && (this.getUpdatedTime() == null ? other.getUpdatedTime() == null : this.getUpdatedTime().equals(other.getUpdatedTime()))
@@ -74,7 +74,7 @@ public class RoleResourceRelation implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getResourceId() == null) ? 0 : getResourceId().hashCode());
+        result = prime * result + ((getMenuId() == null) ? 0 : getMenuId().hashCode());
         result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
         result = prime * result + ((getCreatedTime() == null) ? 0 : getCreatedTime().hashCode());
         result = prime * result + ((getUpdatedTime() == null) ? 0 : getUpdatedTime().hashCode());
@@ -90,7 +90,7 @@ public class RoleResourceRelation implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", resourceId=").append(resourceId);
+        sb.append(", menuId=").append(menuId);
         sb.append(", roleId=").append(roleId);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedTime=").append(updatedTime);

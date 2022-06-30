@@ -1,4 +1,4 @@
-package com.lagou.authority.entity.po;
+package com.lagou.authority.entity.bo;
 
 import lombok.Data;
 
@@ -6,30 +6,25 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 角色表
- * @TableName roles
+ * 用户和角色关系表
+ * @TableName user_role_relation
  */
 @Data
-public class Roles implements Serializable {
+public class UserRoleRelation implements Serializable {
     /**
-     * 角色id
+     * 关系id
      */
     private Integer id;
 
     /**
-     * 角色code
+     * 用户id
      */
-    private String code;
+    private Integer userId;
 
     /**
-     * 角色名称
+     * 角色id
      */
-    private String name;
-
-    /**
-     * 简介
-     */
-    private String description;
+    private Integer roleId;
 
     /**
      * 创建时间
@@ -64,11 +59,10 @@ public class Roles implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Roles other = (Roles) that;
+        UserRoleRelation other = (UserRoleRelation) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getCode() == null ? other.getCode() == null : this.getCode().equals(other.getCode()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+            && (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()))
             && (this.getCreatedTime() == null ? other.getCreatedTime() == null : this.getCreatedTime().equals(other.getCreatedTime()))
             && (this.getUpdatedTime() == null ? other.getUpdatedTime() == null : this.getUpdatedTime().equals(other.getUpdatedTime()))
             && (this.getCreatedBy() == null ? other.getCreatedBy() == null : this.getCreatedBy().equals(other.getCreatedBy()))
@@ -80,9 +74,8 @@ public class Roles implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getCode() == null) ? 0 : getCode().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
         result = prime * result + ((getCreatedTime() == null) ? 0 : getCreatedTime().hashCode());
         result = prime * result + ((getUpdatedTime() == null) ? 0 : getUpdatedTime().hashCode());
         result = prime * result + ((getCreatedBy() == null) ? 0 : getCreatedBy().hashCode());
@@ -97,9 +90,8 @@ public class Roles implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", code=").append(code);
-        sb.append(", name=").append(name);
-        sb.append(", description=").append(description);
+        sb.append(", userId=").append(userId);
+        sb.append(", roleId=").append(roleId);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedTime=").append(updatedTime);
         sb.append(", createdBy=").append(createdBy);

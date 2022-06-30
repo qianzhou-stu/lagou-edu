@@ -1,8 +1,12 @@
 package com.lagou.authority.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lagou.authority.entity.po.Menu;
+import com.lagou.authority.entity.bo.Menu;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -14,6 +18,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MenuMapper extends BaseMapper<Menu> {
 
+    /**
+     * 根据角色id获取到菜单信息
+     * @param roleId
+     * @return
+     */
+    List<Menu> getByRoleIdIgnoreIsShown(@Param("roleId") Integer roleId);
+
+    /**
+     * 根据角色id查找对应的菜单信息
+     * @param roleIds
+     * @return
+     */
+    List<Menu> queryByRoleIds(@Param("roleIds") Set<Integer> roleIds);
 }
 
 

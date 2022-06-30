@@ -1,8 +1,12 @@
 package com.lagou.authority.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lagou.authority.entity.po.Resource;
+import com.lagou.authority.entity.bo.Resource;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -14,6 +18,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ResourceMapper extends BaseMapper<Resource> {
 
+    List<Resource> queryByRoleIds(@Param("roleIds") Set<Integer> roleIds);
 }
 
 

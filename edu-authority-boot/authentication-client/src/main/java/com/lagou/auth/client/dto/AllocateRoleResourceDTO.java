@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @ToString
-public class AllocateRoleResourceDTO {
+public class AllocateRoleResourceDTO extends AuthorityBaseDTO{
 
     @ApiModelProperty("角色ID")
     private Integer roleId;

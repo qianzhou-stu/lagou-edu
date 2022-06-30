@@ -32,7 +32,7 @@ public class RoleProviderFallbackFactory implements FallbackFactory<RoleProvider
             }
 
             @Override
-            public Result<Boolean> saveOrUpdate(RoleDTO roleDTO) {
+            public Result saveOrUpdate(RoleDTO roleDTO) {
                 log.error("Save or update role failed. params:{}", roleDTO, throwable);
                 return Result.fail();
             }

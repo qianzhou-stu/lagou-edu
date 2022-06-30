@@ -1,7 +1,7 @@
 package com.lagou.authority.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lagou.authority.entity.po.Roles;
+import com.lagou.authority.entity.bo.Role;
 import org.springframework.stereotype.Repository;
 
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 * @Entity generator.domain.Roles
 */
 @Repository
-public interface RolesMapper extends BaseMapper<Roles> {
+public interface RoleMapper extends BaseMapper<Role> {
 
 }
 

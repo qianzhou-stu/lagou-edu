@@ -33,7 +33,7 @@ public interface RoleProvider {
      * @return
      */
     @PostMapping(value = "/saveOrUpdate")
-    Result<Boolean> saveOrUpdate(@RequestBody RoleDTO roleDTO);
+    Result saveOrUpdate(@RequestBody RoleDTO roleDTO);
 
     /**
      * 删除角色，同时删除用户-角色关系，角色-菜单关系，角色-资源关系

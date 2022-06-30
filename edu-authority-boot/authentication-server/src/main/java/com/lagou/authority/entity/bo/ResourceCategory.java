@@ -1,4 +1,4 @@
-package com.lagou.authority.entity.po;
+package com.lagou.authority.entity.bo;
 
 import lombok.Data;
 
@@ -6,25 +6,25 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 用户和角色关系表
- * @TableName user_role_relation
+ * 资源分类表
+ * @TableName resource_category
  */
 @Data
-public class UserRoleRelation implements Serializable {
+public class ResourceCategory implements Serializable {
     /**
-     * 关系id
+     * 
      */
     private Integer id;
 
     /**
-     * 用户id
+     * 分类名称
      */
-    private Integer userId;
+    private String name;
 
     /**
-     * 角色id
+     * 排序
      */
-    private Integer roleId;
+    private Integer sort;
 
     /**
      * 创建时间
@@ -59,10 +59,10 @@ public class UserRoleRelation implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        UserRoleRelation other = (UserRoleRelation) that;
+        ResourceCategory other = (ResourceCategory) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
-            && (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()))
+            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+            && (this.getSort() == null ? other.getSort() == null : this.getSort().equals(other.getSort()))
             && (this.getCreatedTime() == null ? other.getCreatedTime() == null : this.getCreatedTime().equals(other.getCreatedTime()))
             && (this.getUpdatedTime() == null ? other.getUpdatedTime() == null : this.getUpdatedTime().equals(other.getUpdatedTime()))
             && (this.getCreatedBy() == null ? other.getCreatedBy() == null : this.getCreatedBy().equals(other.getCreatedBy()))
@@ -74,8 +74,8 @@ public class UserRoleRelation implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
-        result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
+        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+        result = prime * result + ((getSort() == null) ? 0 : getSort().hashCode());
         result = prime * result + ((getCreatedTime() == null) ? 0 : getCreatedTime().hashCode());
         result = prime * result + ((getUpdatedTime() == null) ? 0 : getUpdatedTime().hashCode());
         result = prime * result + ((getCreatedBy() == null) ? 0 : getCreatedBy().hashCode());
@@ -90,8 +90,8 @@ public class UserRoleRelation implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", userId=").append(userId);
-        sb.append(", roleId=").append(roleId);
+        sb.append(", name=").append(name);
+        sb.append(", sort=").append(sort);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedTime=").append(updatedTime);
         sb.append(", createdBy=").append(createdBy);
