@@ -1,4 +1,4 @@
-package com.lagou.bom.course.common;
+package com.lagou.bom.common;
 
 import com.lagou.common.util.UserContextHolder;
 

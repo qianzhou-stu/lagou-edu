@@ -1,12 +1,9 @@
 package com.lagou.bom.course.controller;
 
-import com.lagou.bom.course.common.UserManager;
+import com.lagou.bom.common.UserManager;
 import com.lagou.bom.course.model.response.CoursePurchasedRecordRespVo;
 import com.lagou.bom.course.model.response.CourseResp;
 import com.lagou.bom.course.service.CourseService;
-import com.lagou.common.entity.vo.Result;
-import com.lagou.common.exception.SystemErrorType;
-import com.lagou.common.response.EduEnum;
 import com.lagou.common.response.ResponseDTO;
 import com.lagou.common.result.ResultCode;
 import com.lagou.course.api.CoursePlayHistoryRemoteService;
