@@ -1,7 +1,6 @@
 package com.lagou.authority.controller;
 
 import com.lagou.auth.client.dto.PermissionDTO;
-import com.lagou.auth.client.provider.AuthProvider;
 import com.lagou.authority.service.IAuthenticationService;
 import com.lagou.common.entity.vo.Result;
 import io.swagger.annotations.*;

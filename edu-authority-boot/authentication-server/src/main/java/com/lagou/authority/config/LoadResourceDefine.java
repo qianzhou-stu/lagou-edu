@@ -1,5 +1,6 @@
 package com.lagou.authority.config;
 
+import com.lagou.authority.service.IResourceService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -7,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoadResourceDefine implements InitializingBean {
     @Autowired
-    //private IResourceService resourceService;
+    private IResourceService resourceService;
     @Override
     public void afterPropertiesSet() throws Exception {
-       // resourceService.loadResource();
+        resourceService.loadResource();
     }
 }
