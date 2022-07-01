@@ -31,7 +31,7 @@ public class VerificationCodeServiceImpl extends ServiceImpl<VerificationCodeMap
         //获取动态验证码
         String randomNumber = RandomUtil.getRandomNumber(6);
         //发送验证码
-        System.out.println("发送验证码");
+        System.out.println("发送验证码" + randomNumber);
 
         VerificationCode verificationCode = new VerificationCode();
         verificationCode.setPhone(telephone);   //设置电话号码

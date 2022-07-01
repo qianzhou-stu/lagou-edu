@@ -1,6 +1,6 @@
 package com.lagou.oauth.mult.authenticator.sms;
 
-import com.lagou.common.entity.vo.Result;
+import com.lagou.common.response.ResponseDTO;
 import com.lagou.oauth.exception.AuthErrorType;
 import com.lagou.oauth.mult.MultAuthentication;
 import com.lagou.oauth.mult.authenticator.AbstractPreparableMultAuthenticator;
@@ -73,7 +73,7 @@ public class SmsMultAuthenticator extends AbstractPreparableMultAuthenticator im
 
         String smsCode = multAuthentication.getAuthParameter("password");
         String username = multAuthentication.getAuthParameter("username");
-        Result result = verificationCodeRemoteService.checkCode(username, smsCode);
+        ResponseDTO result = verificationCodeRemoteService.checkCode(username, smsCode);
         if (null == result || !result.isSuccess()) {
 
             SmsCodeValidateResult validateResult = new SmsCodeValidateResult();

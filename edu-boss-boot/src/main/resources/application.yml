@@ -8,6 +8,8 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+logging:
+  config: classpath:logback.xml
 eureka:
   client:
     register-with-eureka: true

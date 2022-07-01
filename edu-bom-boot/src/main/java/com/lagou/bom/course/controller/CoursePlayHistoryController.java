@@ -1,12 +1,12 @@
 package com.lagou.bom.course.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.lagou.bom.course.common.UserManager;
 import com.lagou.bom.course.model.request.CoursePlayHistoryReq;
 import com.lagou.common.response.ResponseDTO;
 import com.lagou.common.result.ResultCode;
 import com.lagou.course.api.CoursePlayHistoryRemoteService;
 import com.lagou.course.api.dto.CoursePlayHistoryDTO;
-import com.lagou.front.common.UserManager;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
