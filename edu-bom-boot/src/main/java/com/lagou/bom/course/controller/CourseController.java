@@ -1,6 +1,5 @@
 package com.lagou.bom.course.controller;
 
-import com.lagou.bom.course.common.UserManager;
 import com.lagou.bom.course.model.response.CoursePurchasedRecordRespVo;
 import com.lagou.bom.course.model.response.CourseResp;
 import com.lagou.bom.course.service.CourseService;
@@ -14,6 +13,7 @@ import com.lagou.course.api.CourseRemoteService;
 import com.lagou.course.api.dto.CourseDTO;
 import com.lagou.course.api.dto.PageResultDTO;
 import com.lagou.course.api.param.CourseQueryParam;
+import com.lagou.front.common.UserManager;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
