@@ -24,8 +24,6 @@ eureka:
 spring:
   application:
     name: edu-order-boot
-  main:
-    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql:///edu_order?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
