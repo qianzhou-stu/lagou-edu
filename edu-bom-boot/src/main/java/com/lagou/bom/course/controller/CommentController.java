@@ -1,6 +1,7 @@
 package com.lagou.bom.course.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.lagou.bom.course.common.UserManager;
 import com.lagou.bom.course.model.request.CommentReq;
 import com.lagou.bom.course.model.response.CourseCommentRespVo;
 import com.lagou.common.response.ResponseDTO;
@@ -9,7 +10,6 @@ import com.lagou.edu.comment.api.CourseCommentFavoriteRemoteService;
 import com.lagou.edu.comment.api.CourseCommentRemoteService;
 import com.lagou.edu.comment.api.dto.CourseCommentDTO;
 import com.lagou.edu.comment.api.param.CourseCommentParam;
-import com.lagou.front.common.UserManager;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

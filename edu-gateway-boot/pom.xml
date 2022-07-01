@@ -37,10 +37,17 @@
             <artifactId>edu-oauth-boot-api</artifactId>
             <version>v1.0</version>
         </dependency>
-       <!-- <dependency>
-            <groupId></groupId>
-            <artifactId>authen</artifactId>
-        </dependency>-->
+        <dependency>
+            <groupId>com.lagou</groupId>
+            <artifactId>authentication-client</artifactId>
+            <version>v1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-anno-api</artifactId>
+            <version>2.5.14</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
