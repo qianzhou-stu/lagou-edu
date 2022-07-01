@@ -3,10 +3,10 @@ package com.lagou.bom.user.controller;
 
 
 import com.alibaba.fastjson.JSON;
-import com.lagou.bom.course.common.UserManager;
 import com.lagou.bom.user.service.UserService;
 import com.lagou.common.regex.RegexUtil;
 import com.lagou.common.response.ResponseDTO;
+import com.lagou.front.common.UserManager;
 import com.lagou.oauth.api.feign.OAuthRemoteService;
 import com.lagou.user.api.dto.UserDTO;
 import com.lagou.user.api.dto.WeixinDTO;

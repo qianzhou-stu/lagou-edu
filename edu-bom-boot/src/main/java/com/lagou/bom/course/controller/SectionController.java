@@ -1,10 +1,10 @@
 package com.lagou.bom.course.controller;
 
-import com.lagou.bom.course.common.UserManager;
 import com.lagou.bom.course.model.response.CourseSectionListResult;
 import com.lagou.bom.course.service.SectionService;
 import com.lagou.common.response.ResponseDTO;
 import com.lagou.common.result.ResultCode;
+import com.lagou.front.common.UserManager;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

@@ -2,12 +2,12 @@ package com.lagou.bom.course.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.aliyuncs.utils.StringUtils;
-import com.lagou.bom.course.common.UserManager;
 import com.lagou.common.response.ResponseDTO;
 import com.lagou.common.result.ResultCode;
 import com.lagou.course.api.MediaRemoteService;
 import com.lagou.course.api.dto.MediaDTO;
 import com.lagou.course.api.dto.VideoPlayDto;
+import com.lagou.front.common.UserManager;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
