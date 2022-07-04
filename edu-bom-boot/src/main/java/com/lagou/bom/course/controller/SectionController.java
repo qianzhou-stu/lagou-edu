@@ -1,6 +1,6 @@
 package com.lagou.bom.course.controller;
 
-import com.lagou.bom.course.common.UserManager;
+import com.lagou.bom.common.UserManager;
 import com.lagou.bom.course.model.response.CourseSectionListResult;
 import com.lagou.bom.course.service.SectionService;
 import com.lagou.common.response.ResponseDTO;

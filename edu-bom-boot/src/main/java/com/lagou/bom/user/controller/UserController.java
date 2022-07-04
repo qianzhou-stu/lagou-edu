@@ -3,7 +3,7 @@ package com.lagou.bom.user.controller;
 
 
 import com.alibaba.fastjson.JSON;
-import com.lagou.bom.course.common.UserManager;
+import com.lagou.bom.common.UserManager;
 import com.lagou.bom.user.service.UserService;
 import com.lagou.common.regex.RegexUtil;
 import com.lagou.common.response.ResponseDTO;

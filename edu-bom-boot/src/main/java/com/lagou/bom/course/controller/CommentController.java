@@ -1,7 +1,7 @@
 package com.lagou.bom.course.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.lagou.bom.course.common.UserManager;
+import com.lagou.bom.common.UserManager;
 import com.lagou.bom.course.model.request.CommentReq;
 import com.lagou.bom.course.model.response.CourseCommentRespVo;
 import com.lagou.common.response.ResponseDTO;
