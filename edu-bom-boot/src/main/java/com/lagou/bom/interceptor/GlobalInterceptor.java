@@ -1,6 +1,6 @@
 package com.lagou.bom.interceptor;
 
-import com.lagou.bom.course.common.UserManager;
+import com.lagou.bom.common.UserManager;
 import com.lagou.common.util.UserContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;
