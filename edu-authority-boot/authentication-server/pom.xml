@@ -33,11 +33,6 @@
             <groupId>com.lagou</groupId>
             <artifactId>authentication-client</artifactId>
             <version>v1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.lagou</groupId>
-            <artifactId>authentication-client</artifactId>
-            <version>v1.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.mybatis.spring.boot</groupId>
