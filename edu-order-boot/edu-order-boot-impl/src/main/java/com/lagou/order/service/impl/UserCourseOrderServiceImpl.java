@@ -4,37 +4,41 @@ import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.dangdang.ddframe.rdb.sharding.keygen.KeyGenerator;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dangdang.ddframe.rdb.sharding.keygen.KeyGenerator;
 import com.lagou.common.constant.CacheDefine;
-import com.lagou.common.exception.ServiceException;
-import com.lagou.common.exception.SystemErrorType;
-import com.lagou.common.response.ResponseDTO;
+import com.lagou.common.constant.MQConstant;
+import com.lagou.common.mq.RocketMqService;
+import com.lagou.common.mq.dto.BaseMqDTO;
 import com.lagou.common.util.ConvertUtil;
 import com.lagou.common.util.ValidateUtils;
 import com.lagou.course.api.ActivityCourseRemoteService;
 import com.lagou.course.api.CourseRemoteService;
 import com.lagou.course.api.dto.ActivityCourseDTO;
+import com.lagou.course.api.dto.ActivityCourseUpdateStockDTO;
 import com.lagou.course.api.dto.CourseDTO;
 import com.lagou.course.api.enums.CourseStatus;
+import com.lagou.order.annotation.UserCourseOrderRecord;
 import com.lagou.order.api.dto.CreateShopGoodsOrderReqDTO;
 import com.lagou.order.api.dto.UserCourseOrderDTO;
 import com.lagou.order.api.dto.UserCourseOrderResDTO;
+import com.lagou.order.api.enums.StatusTypeEnum;
 import com.lagou.order.api.enums.UserCourseOrderSourceType;
 import com.lagou.order.api.enums.UserCourseOrderStatus;
 import com.lagou.order.entity.UserCourseOrder;
 import com.lagou.order.mapper.UserCourseOrderMapper;
 import com.lagou.order.service.UserCourseOrderService;
-import javafx.beans.binding.ObjectExpression;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @ClassName UserCourseOrderServiceImpl
@@ -56,13 +60,18 @@ public class UserCourseOrderServiceImpl extends ServiceImpl<UserCourseOrderMappe
     private KeyGenerator keyGenerator;
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
-
+    @Autowired
+    private UserCourseOrderService userCourseOrderService;
+    @Autowired
+    private RocketMqService rocketMqService;
 
     @Override
     public Integer countUserCourseOrderByCourseIds(Integer userId, List<Integer> courseIds) {
-        if (Objects.isNull(userId)){
+        ValidateUtils.notNullParam(userId);
+        ValidateUtils.isTrue(userId > 0, "用户id错误");
+        /*if (Objects.isNull(userId)){
             throw new ServiceException(SystemErrorType.NOT_UNIQUE_USER_PRIMARY_KEY, "用户的id不能为空");
-        }
+        }*/
         LambdaQueryWrapper<UserCourseOrder> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserCourseOrder::getUserId, userId);
         queryWrapper.in(UserCourseOrder::getCourseId, courseIds);
@@ -76,6 +85,7 @@ public class UserCourseOrderServiceImpl extends ServiceImpl<UserCourseOrderMappe
      * @return
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public UserCourseOrderResDTO saveOrder(CreateShopGoodsOrderReqDTO reqDTO) {
         if (Objects.isNull(reqDTO.getGoodsId())){
             return null;
@@ -90,7 +100,7 @@ public class UserCourseOrderServiceImpl extends ServiceImpl<UserCourseOrderMappe
         CourseDTO courseDTO = courseRemoteService.getCourseById(reqDTO.getGoodsId(), reqDTO.getUserId());
         log.info("saveOrder - courseRemoteService.getCourseById - goodsId:{} courseDTO:{}",reqDTO.getGoodsId(), JSON.toJSONString(courseDTO));
         ValidateUtils.isFalse(null == courseDTO, "课程信息为空");
-        ValidateUtils.isTrue(courseDTO.getStatus().equals(CourseStatus.PUTAWAY.getCode()), "课程状态错误");
+        ValidateUtils.isTrue(Objects.requireNonNull(courseDTO).getStatus().equals(CourseStatus.PUTAWAY.getCode()), "课程状态错误");
         UserCourseOrder userCourseOrder = checkSuccessBuyGoods(reqDTO.getGoodsId(), reqDTO.getUserId());
         ValidateUtils.isTrue(null == userCourseOrder, "已成功购买过该课程");
         userCourseOrder = checkCreateBuyGoods(reqDTO.getGoodsId(), reqDTO.getUserId());
@@ -104,22 +114,31 @@ public class UserCourseOrderServiceImpl extends ServiceImpl<UserCourseOrderMappe
         ActivityCourseDTO activityCourseCache = null;
         if (StringUtils.isNotBlank(activityCourseStr)){
             activityCourseCache = JSON.parseObject(activityCourseStr, ActivityCourseDTO.class);
-            long cacheRes = redisTemplate.opsForValue().increment(CacheDefine.ActivityCourse.getStockKey(activityCourseCache.getCourseId()))
+            Long cacheRes = redisTemplate.opsForValue().increment(CacheDefine.ActivityCourse.getStockKey(activityCourseCache.getCourseId()), -1L);
+            log.info("saveOrder - increment - activityCourseId:{} courseId:{} cacheRes:{}",activityCourseCache.getId(),reqDTO.getGoodsId(),cacheRes);
+            if(0 <= cacheRes){
+                saveOrder.setActivityCourseId(activityCourseCache.getId());
+            }else{
+                redisTemplate.opsForValue().increment(CacheDefine.ActivityCourse.getStockKey(activityCourseCache.getCourseId()), 1L);
+            }
         }
-        redisTemplate.opsForValue().increment();
-
-
-        // 先根据商品id查询是不是为对应的活动课程
-        ResponseDTO<ActivityCourseDTO> activityCourseDTOResponseDTO = activityCourseRemoteService.getByCourseId(reqDTO.getGoodsId());
-        ActivityCourseDTO activityCourseDTO = activityCourseDTOResponseDTO.getContent();
-        // UserCourseOrder userCourseOrder = new UserCourseOrder();
-        // 生成订单号  -- 对于订单来说需要使用的是分库分表的方式使用
-        userCourseOrder.setCourseId(reqDTO.getGoodsId());
-        userCourseOrder.setUserId(reqDTO.getUserId());
-        //userCourseOrder.setSourceType(UserCourseOrderSourceType.parse());
-
-
-        return null;
+        try {
+            userCourseOrderMapper.insert(saveOrder);
+        } catch (Exception e) {
+            log.error("saveOrder - reqDTO:{} err",JSON.toJSONString(reqDTO), e);
+            //异常还原库存 -- 异常的时候还原redis的值， 因为不还原的话出出现问题
+            if(saveOrder.getActivityCourseId() != null) {
+                redisTemplate.opsForValue().increment(CacheDefine.ActivityCourse.getStockKey(activityCourseCache.getId()), 1L);
+            }
+            ValidateUtils.isTrue(false, "课程订单处理失败");
+        }
+        // 发送MQ消息
+        if(saveOrder.getActivityCourseId() != null) {
+            // 当时活动课程id的时候，就是发送消息
+            rocketMqService.convertAndSend(MQConstant.Topic.ACTIVITY_COURSE_STOCK, new BaseMqDTO<ActivityCourseUpdateStockDTO>(new ActivityCourseUpdateStockDTO(saveOrder.getActivityCourseId()), UUID.randomUUID().toString()));
+        }
+        // 返回UserCourseOrderResDTO
+        return new UserCourseOrderResDTO(saveOrder.getOrderNo());
     }
 
     /**
@@ -178,37 +197,81 @@ public class UserCourseOrderServiceImpl extends ServiceImpl<UserCourseOrderMappe
         return ConvertUtil.convert(userCourseOrder, UserCourseOrderDTO.class);
     }
 
+    /**
+     * 更新商品订单状态
+     * @param orderNo
+     * @param status
+     * @return
+     */
     @Override
+    @UserCourseOrderRecord(type = StatusTypeEnum.UPDATE)
     public Boolean updateOrderStatus(String orderNo, Integer status) {
+        ValidateUtils.notNullParam(orderNo);
+        ValidateUtils.notNullParam(status);
         LambdaQueryWrapper<UserCourseOrder> courseOrderLambdaQueryWrapper = new LambdaQueryWrapper<>();
         courseOrderLambdaQueryWrapper.eq(UserCourseOrder::getOrderNo, orderNo);
         UserCourseOrder userCourseOrder = userCourseOrderMapper.selectOne(courseOrderLambdaQueryWrapper);
+        ValidateUtils.isTrue(null != userCourseOrder, "商品订单信息查询为空");
+        if(Objects.requireNonNull(userCourseOrder).getStatus().equals(status)) {
+            return false;
+        }
+        if(Objects.requireNonNull(userCourseOrder).getStatus().equals(UserCourseOrderStatus.SUCCESS.getCode())) {
+            return false;
+        }
         LambdaUpdateWrapper<UserCourseOrder> updateWrapper = new LambdaUpdateWrapper<>();
-        updateWrapper.eq(UserCourseOrder::getOrderNo, orderNo);
-        int update = userCourseOrderMapper.update(userCourseOrder, updateWrapper);
-        return update > 0;
+        updateWrapper.eq(UserCourseOrder::getId, userCourseOrder.getId());
+        userCourseOrder.setStatus(status);
+        userCourseOrderMapper.update(userCourseOrder, updateWrapper);
+        return true;
     }
 
+    /**
+     * 根据用户userId查询对应的用户课程订单
+     * @param userId
+     * @return List<UserCourseOrderDTO>
+     */
     @Override
     public List<UserCourseOrderDTO> getUserCourseOrderByUserId(Integer userId) {
+        ValidateUtils.notNullParam(userId);
+        ValidateUtils.isTrue(userId > 0, "用户id错误");
         LambdaQueryWrapper<UserCourseOrder> courseOrderLambdaQueryWrapper = new LambdaQueryWrapper<>();
         courseOrderLambdaQueryWrapper.eq(UserCourseOrder::getUserId, userId);
         List<UserCourseOrder> userCourseOrders = userCourseOrderMapper.selectList(courseOrderLambdaQueryWrapper);
         return ConvertUtil.convertList(userCourseOrders, UserCourseOrderDTO.class);
     }
 
+    /**
+     * 根据课程的id统计课程当下的订单数
+     * @param courseId
+     * @return
+     */
     @Override
     public Integer countUserCourseOrderByCourseId(Integer courseId) {
+        ValidateUtils.notNullParam(courseId);
+        ValidateUtils.isTrue(courseId > 0, "课程id错误");
         LambdaQueryWrapper<UserCourseOrder> courseOrderLambdaQueryWrapper = new LambdaQueryWrapper<>();
         courseOrderLambdaQueryWrapper.eq(UserCourseOrder::getCourseId, courseId);
         return userCourseOrderMapper.selectCount(courseOrderLambdaQueryWrapper);
     }
 
+    /**
+     * (根据课程id查询支付成功订单集合)
+     * @param courseId
+     * @return
+     */
     @Override
     public List<UserCourseOrderDTO> getOrderListByCourseId(Integer courseId) {
+        ValidateUtils.notNullParam(courseId);
+        ValidateUtils.isTrue(courseId > 0, "课程id错误");
         LambdaQueryWrapper<UserCourseOrder> courseOrderLambdaQueryWrapper = new LambdaQueryWrapper<>();
         courseOrderLambdaQueryWrapper.eq(UserCourseOrder::getCourseId, courseId);
         List<UserCourseOrder> userCourseOrders = userCourseOrderMapper.selectList(courseOrderLambdaQueryWrapper);
         return ConvertUtil.convertList(userCourseOrders, UserCourseOrderDTO.class);
+    }
+
+    @Override
+    @UserCourseOrderRecord(type = StatusTypeEnum.INSERT)
+    public void saveOrder(UserCourseOrder order) {
+        save(order);
     }
 }

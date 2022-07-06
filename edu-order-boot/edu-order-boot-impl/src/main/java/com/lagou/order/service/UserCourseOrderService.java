@@ -31,4 +31,11 @@ public interface UserCourseOrderService extends IService<UserCourseOrder> {
     Integer countUserCourseOrderByCourseId(Integer courseId);
 
     List<UserCourseOrderDTO> getOrderListByCourseId(Integer courseId);
+
+    /**
+     * @Description: (保存订单信息)
+     * @author: ma wei long
+     * @date:   2020年6月21日 下午11:44:42
+     */
+    void saveOrder(UserCourseOrder order);
 }
