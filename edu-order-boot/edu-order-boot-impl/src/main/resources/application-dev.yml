@@ -1,0 +1,71 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: edu-order-boot
+  aop: # 使用CGLIB类实现AOP的代理模式
+    proxy-target-class: true
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql:///edu_order?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: "!andreaszhou"
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: edu-config-boot
+      profile: "dev"
+      name: ${spring.application.name}
+    loadbalancer:
+      ribbon:
+        enabled: false
+    discovery:
+      register: true
+      prefer-ip-address: true
+      health-check-path: /actuator/health
+      service-name: ${spring.application.name}
+      instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}
+      health-check-interval: 5s
+    alibaba:
+      seata:
+        tx-service-group: my_tx_group
+# 配置seata
+seata:
+  enabled: true
+  application-id: edu_order_boot
+  tx-service-group: my_tx_group # 事务群组（可以每个应用独立取名，也可以使用相同的名字）
+  enable-auto-data-source-proxy: true
+  use-jdk-proxy: true
+feign:
+  compression:
+    request:
+      enabled: true # 开启请求压缩
+      mime-types: text/html, application/xml, application/json # 设置压缩的数据类型，此处也是默认值
+      min-request-size: 2048
+    response:
+      enabled: true
+#  hystrix:
+#    enabled: true
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipaddress}:${spring.application.name}:${server.port}:@project.version@
+
+#ribbon:
+#  ConnectTimeout: 2000
+#  ReadTimeout: 5000
+#  okToRetryOnAllOperations: true
+#  maxAutoRetries: 0
+#  maxAutoRetriesNextServer: 0
+#  NFLoadBalancerRuleClassName: com.netfilx.loadbalancer.RoundRobinRule
+#  eureka:
+#    enabled: true
