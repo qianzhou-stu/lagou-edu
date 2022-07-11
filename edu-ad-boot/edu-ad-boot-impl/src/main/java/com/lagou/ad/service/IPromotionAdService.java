@@ -21,4 +21,6 @@ public interface IPromotionAdService extends IService<PromotionAd> {
     PromotionAdDTO getAdById(Integer id);
 
     void saveOrUpdateAd(PromotionAdDTO promotionAdDTO);
+
+    void updateStatus(Integer id, Integer status);
 }

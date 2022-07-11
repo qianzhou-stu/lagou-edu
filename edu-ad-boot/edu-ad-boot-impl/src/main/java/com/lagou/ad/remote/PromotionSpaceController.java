@@ -6,6 +6,7 @@ import com.lagou.ad.api.feign.AdRemoteService;
 import com.lagou.ad.entity.PromotionSpace;
 import com.lagou.ad.service.IPromotionAdService;
 import com.lagou.ad.service.IPromotionSpaceService;
+import com.lagou.common.response.ResponseDTO;
 import com.lagou.common.util.ConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -74,5 +75,12 @@ public class PromotionSpaceController implements AdRemoteService {
     public void saveOrUpdateAd(@RequestBody PromotionAdDTO promotionAdDTO) {
         promotionAdService.saveOrUpdateAd(promotionAdDTO);
         return;
+    }
+
+    @Override
+    public ResponseDTO updateStatus(Integer id, Integer status) {
+        // 更新广告状态
+        promotionAdService.updateStatus(id, status);
+        return ResponseDTO.success("更新状态成功");
     }
 }

@@ -1,6 +1,7 @@
 package com.lagou.common.web.exception;
 
 import com.lagou.common.entity.vo.Result;
+import com.lagou.common.exception.AlertException;
 import com.lagou.common.exception.BaseException;
 import com.lagou.common.exception.ServiceException;
 import com.lagou.common.exception.SystemErrorType;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MultipartException;
 
 /**
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartException;
  * @Version 1.0
  */
 @Slf4j
+@RestControllerAdvice
 public class DefaultGlobalExceptionHandlerAdvice {
 
     @ExceptionHandler(value = {MultipartException.class})
@@ -44,6 +47,12 @@ public class DefaultGlobalExceptionHandlerAdvice {
     public Result baseException(BaseException ex) {
         log.info("base exception:{}", ex.getMessage());
         return Result.fail(ex.getErrorType());
+    }
+
+    @ExceptionHandler(value = {AlertException.class})
+    public Result alertException(AlertException ex){
+        log.info("alert exception:{}", ex.getMessage());
+        return Result.fail(ex);
     }
 
     @ExceptionHandler(value = {ServiceException.class})

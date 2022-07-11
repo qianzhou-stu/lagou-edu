@@ -6,6 +6,8 @@ import com.lagou.ad.api.dto.PromotionAdDTO;
 import com.lagou.ad.entity.PromotionAd;
 import com.lagou.ad.mapper.PromotionAdMapper;
 import com.lagou.ad.service.IPromotionAdService;
+import com.lagou.common.exception.AlertException;
+import com.lagou.common.response.EduEnum;
 import com.lagou.common.util.ConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,5 +60,19 @@ public class PromotionAdServiceImpl extends ServiceImpl<PromotionAdMapper, Promo
             promotionAdMapper.updateById(promotionAd);
         }
         return;
+    }
+
+    @Override
+    public void updateStatus(Integer id, Integer status) {
+        if (id == null){
+            throw new AlertException(EduEnum.UPDATE_FAILURE.getCode(), EduEnum.UPDATE_FAILURE.getMsg());
+        }
+        if (status == null){
+            throw new AlertException(EduEnum.UPDATE_FAILURE.getCode(), EduEnum.UPDATE_FAILURE.getMsg());
+        }
+        PromotionAd promotionAd = new PromotionAd();
+        promotionAd.setId(id);
+        promotionAd.setStatus(status);
+        promotionAdMapper.updateById(promotionAd);
     }
 }

@@ -2,11 +2,9 @@ package com.lagou.ad.api.feign;
 
 import com.lagou.ad.api.dto.PromotionAdDTO;
 import com.lagou.ad.api.dto.PromotionSpaceDTO;
+import com.lagou.common.response.ResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,4 +38,7 @@ public interface AdRemoteService {
     // 编辑或保存广告
     @PostMapping("/saveOrUpdate")
     void saveOrUpdateAd(@RequestBody PromotionAdDTO promotionAdDTO);
+    // 更新状态的值
+    @RequestMapping("/updateStatus")
+    ResponseDTO updateStatus(@RequestParam("id") Integer id, @RequestParam("status") Integer status);
 }

@@ -2,12 +2,14 @@ package com.lagou.common.entity.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.lagou.common.exception.AlertException;
 import com.lagou.common.exception.BaseException;
 import com.lagou.common.exception.ErrorType;
 import com.lagou.common.exception.SystemErrorType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
+import org.checkerframework.checker.units.qual.A;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
@@ -97,6 +99,17 @@ public class Result<T> {
      */
     public static Result fail() {
         return new Result(SystemErrorType.SYSTEM_ERROR);
+    }
+
+    /**
+     * 返回alertException
+     */
+    public static Result fail(AlertException alertException){
+        return fail(alertException, null);
+    }
+
+    public static Result fail(AlertException alertException, Object data) {
+        return new Result(String.valueOf(alertException.getCode()), alertException.getMessage(), data);
     }
 
     /**
