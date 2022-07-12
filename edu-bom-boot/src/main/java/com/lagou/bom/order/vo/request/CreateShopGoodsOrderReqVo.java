@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(description = "创建商品订单请求")
-public class CreateShopGoodsOrderReqDTO implements java.io.Serializable{
+public class CreateShopGoodsOrderReqVo implements java.io.Serializable{
     /**
 	*/
 	private static final long serialVersionUID = 2463894259231186820L;
