@@ -67,6 +67,12 @@
             <artifactId>edu-message-boot-api</artifactId>
             <version>v1.0</version>
         </dependency>
+        <!--引入authentication-client-->
+        <dependency>
+            <groupId>com.lagou</groupId>
+            <artifactId>authentication-client</artifactId>
+            <version>v1.0</version>
+        </dependency>
         <dependency>
             <groupId>com.alicp.jetcache</groupId>
             <artifactId>jetcache-starter-redis</artifactId>
@@ -113,6 +119,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.11.4</version>
+        </dependency>
+        <!--增加spring-boot-configuration-processor-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
         <!--自身和监控的集成功能-->
         <dependency>
