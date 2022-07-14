@@ -33,16 +33,26 @@ public class UserController {
         if (null == pageSize || pageSize <= 0) {
             userQueryParam.setPageSize(10);
         }
-        Page<UserDTO> userPages =
-                userRemoteService.getUserPages(userQueryParam);
-        return Result.success(userPages);
+        try {
+            Page<UserDTO> userPages =
+                    userRemoteService.getUserPages(userQueryParam);
+            return Result.success(userPages);
+        } catch (Exception e) {
+            log.error("分页查询用户信息：",e);
+            return Result.fail(e.getMessage());
+        }
     }
 
     @ApiOperation(value = "封禁用户")
     @GetMapping("forbidUser")
     public Result forbidUser(@RequestParam("userId") Integer userId) {
         log.info("封禁用户:{}", userId);
-        boolean result = userRemoteService.forbidUser(userId);
-        return Result.success(result);
+        try {
+            boolean result = userRemoteService.forbidUser(userId);
+            return Result.success(result);
+        } catch (Exception e) {
+            log.error("封禁用户信息失败", e);
+            return Result.fail(e.getMessage());
+        }
     }
 }
