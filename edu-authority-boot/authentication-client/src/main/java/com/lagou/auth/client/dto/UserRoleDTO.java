@@ -32,7 +32,7 @@ public class UserRoleDTO {
     private String name;
 
     /**
-     * 是否有权限
+     * 是否有权限 标识用户是否有该角色权限
      */
     @ApiModelProperty("是否有权限")
     private boolean hasPermission;
