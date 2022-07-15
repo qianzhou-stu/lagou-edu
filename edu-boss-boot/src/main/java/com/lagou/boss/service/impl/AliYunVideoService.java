@@ -1,4 +1,4 @@
-package com.lagou.boss.service;
+package com.lagou.boss.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.DefaultAcsClient;
@@ -7,6 +7,7 @@ import com.aliyuncs.kms.model.v20160120.GenerateDataKeyRequest;
 import com.aliyuncs.kms.model.v20160120.GenerateDataKeyResponse;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.vod.model.v20170321.*;
+import com.lagou.boss.service.AliyunTask;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;

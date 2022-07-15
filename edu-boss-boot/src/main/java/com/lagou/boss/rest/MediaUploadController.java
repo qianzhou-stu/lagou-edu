@@ -5,7 +5,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.vod.model.v20170321.CreateUploadImageResponse;
 import com.aliyuncs.vod.model.v20170321.CreateUploadVideoResponse;
 import com.aliyuncs.vod.model.v20170321.RefreshUploadVideoResponse;
-import com.lagou.boss.service.AliYunVideoService;
+import com.lagou.boss.service.impl.AliYunVideoService;
 import com.lagou.boss.service.AliyunService;
 import com.lagou.boss.service.AliyunTask;
 import com.lagou.common.entity.vo.Result;

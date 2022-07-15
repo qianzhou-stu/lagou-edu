@@ -3,7 +3,8 @@ package com.lagou.boss.rest;
 import com.lagou.boss.entity.bo.UpLoadResult;
 import com.lagou.boss.entity.form.CourseForm;
 import com.lagou.boss.entity.vo.CourseVo;
-import com.lagou.boss.service.OssService;
+import com.lagou.boss.service.ICourseService;
+import com.lagou.boss.service.impl.OssService;
 import com.lagou.common.entity.vo.Result;
 import com.lagou.common.response.EduEnum;
 import com.lagou.common.util.ConvertUtil;
@@ -30,6 +31,8 @@ public class CourseController {
     private CourseRemoteService courseRemoteService;
     @Autowired
     private OssService ossService;
+    @Autowired
+    private ICourseService courseService;
 
 
     @ApiOperation(value = "保存或者更新课程信息")

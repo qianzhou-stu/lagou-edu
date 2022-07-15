@@ -2,6 +2,7 @@ package com.lagou.boss.service;
 
 import com.aliyun.oss.ClientException;
 import com.aliyuncs.vod.model.v20170321.GetVideoInfoResponse;
+import com.lagou.boss.service.impl.AliYunVideoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundValueOperations;

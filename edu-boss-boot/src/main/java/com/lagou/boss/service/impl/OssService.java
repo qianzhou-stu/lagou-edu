@@ -1,4 +1,4 @@
-package com.lagou.boss.service;
+package com.lagou.boss.service.impl;
 
 import com.aliyun.oss.OSSClient;
 import com.lagou.boss.config.AliyunConfig;
