@@ -38,6 +38,12 @@ public class MultUserDetailsService implements UserDetailsService {
         this.authenticators = authenticators;
     }
 
+    /**
+     * 当前登录即可获取到对应的用户信息以及对应的权限相关信息
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserJwt loadUserByUsername(String username) throws UsernameNotFoundException {
         MultAuthentication multAuthentication = MultAuthenticationContext.get();

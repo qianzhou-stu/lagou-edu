@@ -95,7 +95,7 @@ public class AccessGatewayFilter implements GlobalFilter {
                 userId = (String) jwt.getBody().get("user_id");
                 userName = (String) jwt.getBody().get("user_name");
                 // 拼装用户id、用户名放到请求里面
-                ServerHttpRequest.Builder builder = request.mutate();
+                ServerHttpRequest.Builder builder = request.mutate(); //
                 if (StringUtils.isNotBlank(userName)) {
                     builder.header(X_USER_NAME, userName);
                 }

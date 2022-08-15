@@ -60,6 +60,7 @@ public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * 将 AuthenticationManager 注册为 bean , 方便配置 oauth server 的时候使用
+     * 将 AuthenticationMabager 注册为Bean，
      */
     @Bean
     @Override

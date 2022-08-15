@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 /**
- * @author: ma wei long
+ * @author: zhouqina websocket服务启动类
  * @date: 2020年7月1日 下午8:27:18
 */
 @Configuration

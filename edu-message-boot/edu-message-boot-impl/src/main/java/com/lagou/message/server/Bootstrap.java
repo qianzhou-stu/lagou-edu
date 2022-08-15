@@ -9,6 +9,7 @@ public class Bootstrap {
         PushServer.pushServer.start(); // 启动失败, 系统会自动关闭
         final HttpCheckServer checkServer = new HttpCheckServer(11221);
         checkServer.start();
+        // Runtime.getRuntime.addShutDownHook 添加运行时的钩子函数
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {

@@ -24,6 +24,7 @@ public class HttpCheckServer {
         this.port = port;
     }
 
+    // 关闭socket通信
     public void stop() {
         try {
             if (future != null) {
